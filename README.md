@@ -5,6 +5,7 @@ El Casino Broadway es un casino grande de Bogotá que controla la venta de ficha
 
 ### Requerimientos
 | Requerimiento | Clases Involucradas | Tema del Curso | Estado |
+| ------------- | ------------------- | -------------- | ------ |
 | RF-01 | 
 Registro de empleados
 Division de empleados
