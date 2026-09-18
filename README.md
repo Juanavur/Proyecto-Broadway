@@ -1,3 +1,5 @@
+<div align="center">
+  
 # Proyecto Broadway
 
 ### Descripción del Problema
@@ -24,3 +26,5 @@ El Casino Broadway es un casino grande de Bogotá que controla la venta de ficha
 | Responsable de Producto | Responsable de Calidad | Responsable de Diseño | Responsable de Integración |
 |---|---|---|---|
 | [Camilo Ramírez](https://github.com/) | [Santiago Caicedo](https://github.com/Santiwr) | [Johan Buitrago](https://github.com/johansebastianbuitrago7-netizen) y [Juan Avellaneda](https://github.com/Juanavur) | [Juan Lasso](https://github.com/Weirdtions) |
+
+</div>
