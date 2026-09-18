@@ -1,6 +1,4 @@
-<div align="center">
-  
-# Proyecto Broadway
+<div align="center"># Proyecto Broadway
 
 ### Descripción del Problema
 
