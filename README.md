@@ -1,15 +1,11 @@
-# Proyecto Broadway<br>
-
-### Índice
-- [Descripción](#descripci%C3%B3n-del-problema)
-- [Requerimientos](#requerimientos)
-- [Roles del Equipo](#roles-del-equipo)
-#
+# Proyecto Broadway
 
 ### Descripción del Problema
+
 El Casino Broadway es un casino grande de Bogotá que controla la venta de fichas, las apuestas y los pagos de forma manual, con planillas y cálculos que hacen los crupieres. Esto provoca descuadres de caja al cierre de cada turno, errores en el cálculo de pagos (teniendo en cuenta que cada juego tiene su propia tabla), apuestas fuera de los límites de la mesa y ningún tipo de control sobre la edad mínima permitida legal. Nuestro proyecto propone un sistema que pueda automatizar el registro de los apostadores, venta y el cambio de fichas, la gestión de mesas, la validación de apuestas, el cálculo automático de pagos según el juego, los niveles de fidelización, los límites de pérdida y la autoexclusión, y el cierre de caja, guardando la información en archivos para que no se pierda entre los cierres de caja.
 
-### Requerimientos
+### Requerimientos funcionales
+
 | ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
 |---|---|---|---|---|---|
 | RF-01 | Registro de clientes | Registrar clientes con documento, nombre y fecha de nacimiento. | Cajero | Alta | No se permiten dos clientes con el mismo documento. Se rechaza a los menores de 18 años. |
@@ -24,6 +20,7 @@ El Casino Broadway es un casino grande de Bogotá que controla la venta de ficha
 | RF-10 | Sistema de fidelidad | Asignar un nivel al cliente (Bronce, Plata, Oro, VIP) según el total apostado, con cashback sobre sus pérdidas. | Sistema | Media | Un cliente Bronce con 1.990.000 apostados que apuesta 20.000 pasa a Plata. Un cliente Oro que pierde 100.000 recibe 5.000 (5%). El nivel nunca baja. |
 
 ### Roles del Equipo
+
 | Responsable de Producto | Responsable de Calidad | Responsable de Diseño | Responsable de Integración |
 |---|---|---|---|
 | [Camilo Ramírez](https://github.com/) | [Santiago Caicedo](https://github.com/Santiwr) | [Johan Buitrago](https://github.com/johansebastianbuitrago7-netizen) y [Juan Avellaneda](https://github.com/Juanavur) | [Juan Lasso](https://github.com/Weirdtions) |
