@@ -3,14 +3,13 @@
 ## Descripción del Problema
 
 ### Contexto
-El casino Broadway, la efigie de un pasado que arrastró lo mejor de una época que ya no volverá, un lugar que alguna vez fue grande y lujosos, el símbolo del estilo de vida de la ciudad de Bogotá, del cual ahora solo quedan las cenizas de aquella grandeza de este lugar. Es por eso que en busca de recuperar aquella gloria que alguna vez inundaba el lugar, se buscan una mejorar, modernizar y optimizar los procesos del casino; el cual está ubicado a las afueras de la ciudad y con cuenta con alrededor de 1000 empleados, entre crupriers, meseros y bar tenders; esto con el fin de poder recuperar aquel brillo que alguna vez impregnó al casino Broadway.
+El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar ubicada en Bogotá, Colombia. Cuenta con una nómina operativa de más de 400 empleados distribuidos en turnos rotativos y una infraestructura física compuesta por 30 mesas de juego en vivo (Ruleta, Blackjack y Póker) y más de 120 terminales electrónicas. A pesar del flujo constante de dinero y fichas, la gestión de apuestas, el control de inventario de mesa y la administración de usuarios se realiza mediante métodos manuales y planillas descentralizadas, lo que genera inconsistencias contables y riesgos operativos diarios.
 
 ### Actores
-El casino Broadway como todo casino, no funciona únicame gracias a sus juegos, detrás de cada mesa, máquina y bar existe un equipo encargado de mantener todo bajo control, cada engranaje de la maquinaria del casino Broadway debe trabajar al unísono para brindarle la mejor y más segura experiencia a sus clientes, estos engranajes son:
-- Administradores: Los estrategas de la máquina, aquellos que vigilan y monitorean cada área.
-- Cajeros: Los guardianes del tesoro, aquellos que revisan si el casino prospéra o no.
-- Crúpieres: Los maestros de la mesa, los encargados de darle vida a cada una y hacer que se sienta una experiencia única.
-- Equipo de sistemas: El cerebro invisible detrás de las máquinas y pantallas.
+* **Cajero:** Empleado responsable de la venta y canje de fichas por dinero en efectivo, registro del balance inicial y ejecución del arqueo/cierre de caja por turno.
+* **Crúpier:** Operador directo de la mesa de juego asignada. Recibe las apuestas de los jugadores, valida que cumplan con los montos mínimos y máximos de la mesa y ejecuta el pago de las rondas ganadoras.
+* **Jefe de Sala / Administrador:** Supervisor general del casino. Abre y cierra mesas, asigna crúpieres, consulta reportes consolidados y gestiona la lista de autoexclusión y vetos.
+* **Cliente / Apostador:** Usuario registrado que adquiere fichas, realiza apuestas en las mesas, acumula beneficios según su volumen de juego y puede fijar topes de pérdida o solicitar su autoexclusión.
 
 ### Proceso actual
 Actualmente el casino Broadway presenta formas muy anticuadas y arcaicas a la hora de efectuar sus procesos. Por ejemplo: Varias máquinas comparten la misma fórmula para calcular los pagos, cuando varias no comparten la misma probabilidad de ganar; no se tiene distinción entre varias máquinas del mismo tipo, esto produce errores porque muchas veces se estiman ganancias de acuerdo a la cantidad de máquinas de cierto tipo que hay, cuando en realidad hay varias dañadas; algo parecido ocurre con las mesas, pues no se hace la distinción del tipo de juego que son, que no todas dejan la misma ganancias y que en todas las mesas se tiene el mismo límite para apostar sin importa el tipo de mesa que es; y por último, está el sistema de clientes, el cual es inexistente, por lo que no se tiene registro si cumplen con la mayoría de edad, si pueden apostar o si están vetados.
