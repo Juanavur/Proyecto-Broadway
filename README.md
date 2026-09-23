@@ -26,7 +26,7 @@ El Casino Broadway es un casino grande de Bogotá que controla la venta de ficha
 
 | Responsable de Producto | Responsable de Calidad | Responsable de Diseño | Responsable de Integración |
 |---|---|---|---|
-| [Camilo Ramírez](https://github.com/) | [Santiago Caicedo](https://github.com/Santiwr)[Daniel Avila](https://github.com/danielavilajjc-commits)| [Johan Buitrago](https://github.com/johansebastianbuitrago7-netizen) y [Juan Avellaneda](https://github.com/Juanavur) | [Juan Lasso](https://github.com/Weirdtions) |
+| [Camilo Ramírez](https://github.com/) | [Santiago Caicedo](https://github.com/Santiwr) y [Daniel Avila](https://github.com/danielavilajjc-commits)| [Johan Buitrago](https://github.com/johansebastianbuitrago7-netizen) y [Juan Avellaneda](https://github.com/Juanavur) | [Juan Lasso](https://github.com/Weirdtions) |
 
 ## Documentación
 
