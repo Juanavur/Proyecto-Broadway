@@ -17,5 +17,5 @@
 
 ## Tabla de trazabilidad incial
 
-| ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
-|---|---|---|---|---|---|
+|Requerimiento | Clases involucradas | Temas del curso | Estado|
+|---|---|---|---|
