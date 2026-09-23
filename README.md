@@ -3,7 +3,7 @@
 ## Descripción del Problema
 
 ### Contexto
-El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar ubicada en Bogotá, Colombia. Cuenta con una nómina operativa de más de 400 empleados distribuidos en turnos rotativos y una infraestructura física compuesta por 30 mesas de juego en vivo (Ruleta, Blackjack y Póker) y más de 120 terminales electrónicas. A pesar del flujo constante de dinero y fichas, la gestión de apuestas, el control de inventario de mesa y la administración de usuarios se realiza mediante métodos manuales y planillas descentralizadas, lo que genera inconsistencias contables y riesgos operativos diarios.
+El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar. Cuenta con una nómina operativa de más de 400 empleados distribuidos en turnos rotativos y una infraestructura física compuesta por 30 mesas de juego en vivo (Ruleta, Blackjack y Póker) y más de 120 terminales electrónicas. A pesar del flujo constante de dinero y fichas, la gestión de apuestas, el control de inventario de mesa y la administración de usuarios se realiza mediante métodos manuales y planillas descentralizadas, lo que genera inconsistencias contables y riesgos operativos diarios.
 
 ### Actores
 * **Cajero:** Empleado responsable de la venta y canje de fichas por dinero en efectivo, registro del balance inicial y ejecución del arqueo/cierre de caja por turno.
@@ -11,11 +11,17 @@ El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar
 * **Jefe de Sala / Administrador:** Supervisor general del casino. Abre y cierra mesas, asigna crúpieres, consulta reportes consolidados y gestiona la lista de autoexclusión y vetos.
 * **Cliente / Apostador:** Usuario registrado que adquiere fichas, realiza apuestas en las mesas, acumula beneficios según su volumen de juego y puede fijar topes de pérdida o solicitar su autoexclusión.
 
-### Proceso actual
-Actualmente el casino Broadway presenta formas muy anticuadas y arcaicas a la hora de efectuar sus procesos. Por ejemplo: Varias máquinas comparten la misma fórmula para calcular los pagos, cuando varias no comparten la misma probabilidad de ganar; no se tiene distinción entre varias máquinas del mismo tipo, esto produce errores porque muchas veces se estiman ganancias de acuerdo a la cantidad de máquinas de cierto tipo que hay, cuando en realidad hay varias dañadas; algo parecido ocurre con las mesas, pues no se hace la distinción del tipo de juego que son, que no todas dejan la misma ganancias y que en todas las mesas se tiene el mismo límite para apostar sin importa el tipo de mesa que es; y por último, está el sistema de clientes, el cual es inexistente, por lo que no se tiene registro si cumplen con la mayoría de edad, si pueden apostar o si están vetados.
+### Proceso Actual (Paso a Paso)
+**Ingreso a sala:** El cliente entra sin un registro sistemático de identidad ni validación contra listas de autoexclusión o mayoría de edad.
+**Compra de fichas:** El cliente entrega efectivo en caja. El cajero anota la transacción a mano en una planilla física y entrega las fichas.
+**Apertura de mesa:** El crúpier recibe un cupo inicial de fichas físicas firmando un recibo en papel.
+**Colocación de apuestas:** En cada ronda, los jugadores colocan fichas. El crúpier verifica visualmente que la apuesta respete los topes de la mesa.
+**Cálculo y pago:** Tras el resultado de la jugada, el crúpier calcula mentalmente el valor a pagar según la regla del juego (ej. 35:1 en Ruleta o 3:2 en Blackjack).
+**Canje de fichas:** El cliente regresa a caja con sus fichas. El cajero las cuenta manualmente, calcula el dinero equivalente y entrega el efectivo.
+**Cierre de turno:** El cajero y el crúpier comparan el dinero y las fichas sobrantes contra las planillas de papel para intentar cuadrar los saldos.
 
 ### Dolor
-El principal problema que presenta el casino Broadway, es que mucha información se pierde y que cosas como las mesas, máquinas y demás, se aplican normas generales, cuando no debería ser así. Es en este sentido que varios problemas aparecen, como lo pueden ser: El no tener un registro de clientes, por lo que resulta difícil tener su historial
+Radica en la desconexión e inconsistencia de sus flujos de información debido a la dependencia exclusiva de registros físicos y cálculos manuales. Al no existir un sistema centralizado, el control del inventario de fichas y el flujo de efectivo sufre discrepancias constantes al cierre de cada turno; los cajeros y supervisores se ven forzados a confrontar planillas manuscritas que frecuentemente contienen tachaduras, omisiones o datos ilegibles, lo que vuelve prácticamente imposible auditar a tiempo los descuadres de caja o identificar fugas de capital. A este problema administrativo se suma la vulnerabilidad en las mesas de juego, donde los crúpieres deben calcular mentalmente las liquidaciones de cada ronda. Por otra parte, la inexistencia de una base de datos de clientes crea un vacío crítico tanto a nivel normativo como comercial: el establecimiento no tiene una forma confiable de verificar la mayoría de edad en cada punto de apuesta ni de aplicar los vetos o las solicitudes de autoexclusión exigidas por las regulaciones de juego responsable, lo que expone a la empresa a sanciones legales.
 
 ### Impacto
 
