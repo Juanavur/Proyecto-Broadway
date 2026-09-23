@@ -1,4 +1,4 @@
-## Tabla de requerimientos.
+## Tabla de requerimientos
 | ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
 |---|---|---|---|---|---|
 | RF-01 | Registro de clientes | El sistema debe permitir al cajero registrar clientes con documento, nombre y fecha de nacimiento. | Cajero | Alta | No se permiten dos clientes con el mismo documento. Se rechaza a los menores de 18 años. |
@@ -13,6 +13,9 @@
 | RF-10 | Sistema de fidelidad | El sistema debe ser capaz de Asignar un nivel al cliente (Bronce, Plata, Oro, VIP) según el total apostado, con cashback sobre sus pérdidas. | Sistema | Media | Un cliente Bronce con 1.990.000 apostados que apuesta 20.000 pasa a Plata. Un cliente Oro que pierde 100.000 recibe 5.000 (5%). El nivel nunca baja. |
 
 
-# Plan hacia la entrega 2. 
+# Plan hacia la entrega 2
 
-## Tabla de trazabilidad incial.
+## Tabla de trazabilidad incial
+
+| ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
+|---|---|---|---|---|---|
