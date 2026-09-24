@@ -51,7 +51,8 @@ Analizamos el impacto desde tres distintas perspectivas:
 | RF-07 | Sistema de finanzas | El sistema debe permitir al administrador registrar cada movimiento de dinero y generar el cierre de caja de cada turno. | Administrador | Alta | Con ventas por 1.000.000 y cambios por 700.000, el balance es 300.000. Si el efectivo contado no coincide, se muestra "DESCUADRE". |
 | RF-08 | Sistema de apuestas | El sistema debe permitir al crupier registrar la apuesta de un cliente en una mesa y calcular su pago según el juego. | Crupier | Alta | Se rechaza la apuesta fuera del mínimo y el máximo de la mesa, o mayor al saldo. Con una apuesta de 10.000: pleno en ruleta gana 350.000 y blackjack natural gana 15.000. |
 | RF-09 | Sistema de máquinas | El sistema debe permitir al tecnico de maquinas registrar las máquinas tragamonedas (código, valor por giro, estado) y sus jugadas. | Técnico de máquinas | Media | Una máquina en mantenimiento no permite jugar. Con 3 símbolos iguales se gana 10 veces la apuesta. Cada giro descuenta su valor del saldo. |
-| RF-10 | Sistema de fidelidad | El sistema debe ser capaz de Asignar un nivel al cliente (Bronce, Plata, Oro, VIP) según el total apostado, con cashback sobre sus pérdidas. | Cajero | Media | Un cliente Bronce con 1.990.000 apostados que apuesta 20.000 pasa a Plata. Un cliente Oro que pierde 100.000 recibe 5.000 (5%). El nivel nunca baja. |
+| RF-10 | Sistema de fidelidad | El sistema debe permitir al cajero asignar un nivel al cliente (Bronce, Plata, Oro, VIP) según el total apostado, con cashback sobre sus pérdidas. | Cajero | Media | Un cliente Bronce con 1.990.000 apostados que apuesta 20.000 pasa a Plata. Un cliente Oro que pierde 100.000 recibe 5.000 (5%). El nivel nunca baja. |
+| RF-11| Persistencia de datos | El sistema debe guardar la información de clientes, empleados, mesas y movimientos, y recuperarla al volver a iniciar la aplicación. | Administrador | Alta | Registrar algo en el sistema, ya sea una mesa o máquina; apagar el sistema y que cuando se vuelva a iniciar estén guardados estos nuevos datos. |
 
 
 # Plan hacia la entrega 2
@@ -70,6 +71,7 @@ Analizamos el impacto desde tres distintas perspectivas:
 |RF-08|Trabajador, Crupier, Juego, Mesa, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
 |RF-09|Trabajador, TecnicoMaquina, Juego, MaquinaTragaMoneda, Cliente, Casino|Encapsulamiento, herencia|En diseño|
 |RF-10|Trabajador, Cajero, Administrador, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
+|RF-11|
 
 
 
