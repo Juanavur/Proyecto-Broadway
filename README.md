@@ -37,7 +37,8 @@ Analizamos el impacto desde tres distintas perspectivas:
 
 | Responsable de Producto | Responsable de Calidad | Responsable de Diseño | Responsable de Integración |
 |---|---|---|---|
-| [Camilo Ramírez](https://github.com/) | [Santiago Caicedo](https://github.com/Santiwr) y [Daniel Avila](https://github.com/danielavilajjc-commits)| [Johan Buitrago](https://github.com/johansebastianbuitrago7-netizen) y [Juan Avellaneda](https://github.com/Juanavur) | [Juan Lasso](https://github.com/Weirdtions) |
+| [Camilo Andrés Ramírez Chinchilla](https://github.com/) | [Santiago Caicedo Ramírez](https://github.com/Santiwr) y [Daniel Felipe Avila Mendez](https://github.com/danielavilajjc-commits)| [Johan Sebastian Buitrago Roncancio](https://github.com/johansebastianbuitrago7-netizen) y [Juan Camilo Avellaneda Urrego](https://github.com/Juanavur) | [Juan Andrés Lasso Arias](https://github.com/Weirdtions) |
+
 
 ## Documentación
 
