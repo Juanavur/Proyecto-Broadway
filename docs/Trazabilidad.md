@@ -1,4 +1,6 @@
 ## Tabla de requerimientos
+Para comenzar con la entrega 2, se empezarnán a abordar los RF-01, RF-02 Y RF-03, puesto que estos 3 brindan las bases para el sistema de clientes y de empleados, lo cual permitirá avanzar en el proyecto y crear las bases de los demás sistemas que son necesitados.
+
 | ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
 |---|---|---|---|---|---|
 | RF-01 | Registro de clientes | El sistema debe permitir al cajero registrar clientes con documento, nombre y fecha de nacimiento. | Cajero | Alta | No se permiten dos clientes con el mismo documento. Se rechaza a los menores de 18 años. |
