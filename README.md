@@ -37,7 +37,7 @@ Analizamos el impacto desde tres distintas perspectivas:
 
 | Responsable de Producto | Responsable de Calidad | Responsable de Diseño | Responsable de Integración |
 |---|---|---|---|
-| [Camilo Andrés Ramírez Chinchilla](https://github.com/) | [Santiago Caicedo Ramírez](https://github.com/Santiwr) y [Daniel Felipe Avila Mendez](https://github.com/danielavilajjc-commits)| [Johan Sebastian Buitrago Roncancio](https://github.com/johansebastianbuitrago7-netizen) y [Juan Camilo Avellaneda Urrego](https://github.com/Juanavur) | [Juan Andrés Lasso Arias](https://github.com/Weirdtions) |
+| [Camilo Andrés Ramírez Chinchilla](https://github.com/camiloopop) | [Santiago Caicedo Ramírez](https://github.com/Santiwr) y [Daniel Felipe Avila Mendez](https://github.com/danielavilajjc-commits)| [Johan Sebastian Buitrago Roncancio](https://github.com/johansebastianbuitrago7-netizen) y [Juan Camilo Avellaneda Urrego](https://github.com/Juanavur) | [Juan Andrés Lasso Arias](https://github.com/Weirdtions) |
 
 ## Tabla de requerimientos
 | ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
@@ -71,7 +71,7 @@ Analizamos el impacto desde tres distintas perspectivas:
 |RF-08|Trabajador, Crupier, Juego, Mesa, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
 |RF-09|Trabajador, TecnicoMaquina, Juego, MaquinaTragaMoneda, Cliente, Casino|Encapsulamiento, herencia|En diseño|
 |RF-10|Trabajador, Cajero, Administrador, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
-|RF-11|
+|RF-11|Casino, Cliente, Trabajador, Mesa, Maquina | Tipo de salidas, Manejo de archivos | En diseño|
 
 
 
