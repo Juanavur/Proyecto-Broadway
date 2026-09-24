@@ -20,13 +20,13 @@
 |Requerimiento | Clases involucradas | Temas del curso | Estado|
 |---|---|---|---|
 |RF-01|Cliente Casino|Encapsulamiento, herencia, validaciones basicas| En diseño|
-|RF-02||Trabajador Administrador Casino|Encapsulamiento, herencia | En diseño
-|RF-03|---|---|---|
-|RF-04|---|---|---|
-|RF-05|---|---|---|
-|RF-06|---|---|---|
-|RF-07|---|---|---|
-|RF-08|---|---|---|
-|RF-09|---|---|---|
-|RF-10|---|---|---|
+|RF-02|Trabajador, Administrador, Casino|Encapsulamiento, herencia| En diseño |
+|RF-03|Trabajador, Administrador, Cajero, Cruppier, TecnicoMaquina Casino|Encapsulamiento, herencia|En diseño|
+|RF-04|Mesa, Juego, Cruppier, Administrador, Casino|Encapsulamiento, herencia, asociación entre objetos |En diseñp|
+|RF-05|Trabajador, Juego, Administador, Casino|Encapsulamiento, herencia|En diseño|
+|RF-06|Trabajador,Cajero, Cliente, Casino |Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
+|RF-07|Trabajador ,Cajero, Administrador, Casino |Encapsulamiento, herencia, retorno de metodos|En diseño|
+|RF-08|Trabajador, Cruppier, Juego, Mesa, Cliente, Casino|Encapsulamiento, Herencia, asociación entre objetos, retorno metodos|En diseño|
+|RF-09|Trabajador, TecnicoMaquina, Juego, MaquinaTragaMoneda, Cliente, Casino|Encapsulamiento, herencia|En diseño|
+|RF-10|Trabajador, Cajero, Administrador, Cliente, Casino|Encapsulamiento, Herencia, asociación entre objetos, retorno metodos|En diseño|
 
