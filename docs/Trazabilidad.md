@@ -19,8 +19,8 @@
 
 |Requerimiento | Clases involucradas | Temas del curso | Estado|
 |---|---|---|---|
-|RF-01|---|---|---|
-|RF-02|---|---|---|
+|RF-01|Cliente Casino|Encapsulamiento, herencia, validaciones basicas| En diseño|
+|RF-02||Trabajador Administrador Casino|Encapsulamiento, herencia | En diseño
 |RF-03|---|---|---|
 |RF-04|---|---|---|
 |RF-05|---|---|---|
