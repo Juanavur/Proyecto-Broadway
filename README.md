@@ -1,7 +1,5 @@
 # Proyecto Broadway
 
-**Repositorio oficial:** [https://github.com/Juanavur/Proyecto-Broadway](https://github.com/Juanavur/Proyecto-Broadway)
-
 ## Descripción del Problema
 
 ### Contexto
