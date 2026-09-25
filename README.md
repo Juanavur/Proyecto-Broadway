@@ -1,5 +1,7 @@
 # Proyecto Broadway
 
+**Repositorio oficial:** [https://github.com/Juanavur/Proyecto-Broadway](https://github.com/Juanavur/Proyecto-Broadway)
+
 ## Descripción del Problema
 
 ### Contexto
@@ -54,28 +56,63 @@ Para comenzar con la entrega 2, se empezarnán a abordar los RF-01, RF-02 Y RF-0
 | RF-08 | Sistema de apuestas | El sistema debe permitir al crupier registrar la apuesta de un cliente en una mesa y calcular su pago según el juego. | Crupier | Alta | Se rechaza la apuesta fuera del mínimo y el máximo de la mesa, o mayor al saldo. Con una apuesta de 10.000: pleno en ruleta gana 350.000 y blackjack natural gana 15.000. |
 | RF-09 | Sistema de máquinas | El sistema debe permitir al tecnico de maquinas registrar las máquinas tragamonedas (código, valor por giro, estado) y sus jugadas. | Técnico de máquinas | Media | Una máquina en mantenimiento no permite jugar. Con 3 símbolos iguales se gana 10 veces la apuesta. Cada giro descuenta su valor del saldo. |
 | RF-10 | Sistema de fidelidad | El sistema debe permitir al cajero asignar un nivel al cliente (Bronce, Plata, Oro, VIP) según el total apostado, con cashback sobre sus pérdidas. | Cajero | Media | Un cliente Bronce con 1.990.000 apostados que apuesta 20.000 pasa a Plata. Un cliente Oro que pierde 100.000 recibe 5.000 (5%). El nivel nunca baja. |
-| RF-11| Persistencia de datos | El sistema debe guardar la información de clientes, empleados, mesas y movimientos, y recuperarla al volver a iniciar la aplicación. | Administrador | Alta | Registrar algo en el sistema, ya sea una mesa o máquina; apagar el sistema y que cuando se vuelva a iniciar estén guardados estos nuevos datos. |
+| RF-11 | Persistencia de datos | El sistema debe permitir al administrador persistir en archivos locales el estado de clientes, empleados, mesas y transacciones, y restaurarlo automáticamente al arrancar. | Administrador | Alta | Al registrar un cliente y asignarle fichas, cerrar la aplicación y reiniciar el sistema, el saldo del cliente y el catálogo de mesas deben coincidir exactamente con el estado previo al apagado. |
 
+### Requerimientos No Funcionales (RNF)
 
-# Plan hacia la entrega 2
+| ID | Requerimiento | Descripción | Categoría | Prioridad | Criterio de aceptación |
+|---|---|---|---|---|---|
+| RNF-01 | Seguridad de credenciales | El sistema debe almacenar las contraseñas de los empleados de forma cifrada/hasheada. | Seguridad | Alta | Al inspeccionar el archivo de persistencia, ninguna contraseña debe ser legible en texto plano. |
+| RNF-02 | Integridad y persistencia | El sistema debe guardar el estado de las mesas, saldos y transacciones en archivos locales de texto/JSON. | Persistencia | Alta | Ante un cierre abrupto de la aplicación, al reiniciar no se deben perder las transacciones confirmadas antes del cierre. |
+| RNF-03 | Validación y robustez | El sistema debe manejar excepciones en entradas de usuario (números negativos, cadenas en campos numéricos). | Robustez | Media | Si un usuario ingresa texto en el monto de una apuesta, el sistema muestra un mensaje de error sin abortar la ejecución. |
 
-## Tabla de trazabilidad incial
+# Plan hacia la Entrega 2
 
-|Requerimiento | Clases involucradas | Temas del curso | Estado|
+Para la Entrega 2 se abordarán prioritariamente los requerimientos **RF-01, RF-02 y RF-03**, ya que constituyen la base del modelo de dominio (gestión de personas, autenticación y jerarquía de permisos por rol), habilitando el desarrollo posterior de las mesas y transacciones.
+
+## Tabla de Trazabilidad Inicial
+
+| Requerimiento | Clases Involucradas | Temas de POO Aplicados | Estado |
 |---|---|---|---|
-|RF-01|Cliente, Casino|Encapsulamiento, herencia, validaciones basicas| En diseño|
-|RF-02|Trabajador, Administrador, Casino|Encapsulamiento, herencia| En diseño |
-|RF-03|Trabajador, Administrador, Cajero, Cruppier, TecnicoMaquina Casino|Encapsulamiento, herencia|En diseño|
-|RF-04|Mesa, Juego, Cruppier, Administrador, Casino|Encapsulamiento, herencia, asociación entre objetos |En diseño|
-|RF-05|Trabajador, Juego, Administador, Casino|Encapsulamiento, herencia|En diseño|
-|RF-06|Trabajador,Cajero, Cliente, Casino |Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
-|RF-07|Trabajador ,Cajero, Administrador, Casino |Encapsulamiento, herencia, retorno de metodos|En diseño|
-|RF-08|Trabajador, Crupier, Juego, Mesa, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
-|RF-09|Trabajador, TecnicoMaquina, Juego, MaquinaTragaMoneda, Cliente, Casino|Encapsulamiento, herencia|En diseño|
-|RF-10|Trabajador, Cajero, Administrador, Cliente, Casino|Encapsulamiento, herencia, asociación entre objetos, retorno metodos|En diseño|
-|RF-11|Casino, Cliente, Trabajador, Mesa, Maquina | Tipo de salidas, Manejo de archivos | En diseño|
+| **RF-01** | `Cliente`, `Persona`, `Casino` | Herencia, Encapsulamiento, Validación de entradas y manejo de excepciones | En diseño |
+| **RF-02** | `Trabajador`, `Persona`, `Administrador`, `Casino` | Herencia, Encapsulamiento, Constructores, Atributos privados con getters/setters | En diseño |
+| **RF-03** | `Trabajador`, `Administrador`, `Cajero`, `Crupier`, `TecnicoMaquina` | Herencia, Clases abstractas, Polimorfismo, Control de acceso | En diseño |
+| **RF-04** | `Mesa`, `Juego`, `Crupier`, `Casino` | Asociación entre objetos, Agregación, Colecciones (`List` / `ArrayList`) | En diseño |
+| **RF-05** | `Juego`, `Ruleta`, `Blackjack`, `Casino` | Herencia, Clases abstractas / Métodos polimórficos, Colecciones de catálogo | En diseño |
+| **RF-06** | `Cajero`, `Cliente`, `Transaccion`, `Casino` | Encapsulamiento, Asociación entre objetos, Invariantes de saldo | En diseño |
+| **RF-07** | `Caja`, `MovimientoFinanciero`, `Administrador`, `Casino` | Colecciones de transacciones, Métodos de cálculo/agregación, Encapsulamiento | En diseño |
+| **RF-08** | `Crupier`, `Mesa`, `Juego`, `Apuesta`, `Cliente` | Polimorfismo (`calcularPago()`), Sobrecarga de métodos, Asociación | En diseño |
+| **RF-09** | `TecnicoMaquina`, `MaquinaTragamonedas`, `Cliente` | Encapsulamiento, Enumeraciones para estados operativos, Generación pseudoaleatoria | En diseño |
+| **RF-10** | `Cliente`, `NivelFidelidad`, `Cajero` | Lógica de acumulación, Encapsulamiento, Reglas de negocio | En diseño |
+| **RF-11** | `Casino`, `GestorPersistencia`, `LectorArchivos` | Flujos de entrada/salida (I/O), Serialización / Parsing de archivos, Manejo robusto de excepciones | En diseño |
 
+---
 
+## Registro de Decisiones de Diseño
+
+### Decisión 1: Jerarquía polimórfica para el catálogo y reglas de los juegos
+* **Decisión:** Implementar una clase base abstracta `Juego` de la cual hereden clases especializadas (`Ruleta`, `Blackjack`), obligando a implementar el método abstracto `calcularPago(apuesta, resultado)`.
+* **Alternativas consideradas:**
+  1. Utilizar una única clase `Mesa` con un atributo `String` o `Enum` para el tipo de juego, resolviendo el cálculo de ganancias con condicionales `switch`/`if-else`.
+  2. Crear clases independientes para cada juego sin relación de herencia entre sí.
+* **Por qué:** Cada modalidad de juego en un casino tiene reglas matemáticas y multiplicadores incompatibles entre sí (35:1 vs 3:2). El polimorfismo desacopla la mesa de la lógica particular de cálculo y permite incorporar nuevos juegos en futuras entregas sin alterar el código de la mesa (Principio Open/Closed).
+* **Consecuencia:** Mayor modularidad y mantenibilidad del diseño, requiriendo el diseño de una interfaz/método abstracto común que admita los parámetros de las apuestas.
+
+### Decisión 2: Mecanismo de persistencia local mediante archivos estructurados
+* **Decisión:** Persistir los datos del casino (clientes, empleados, mesas, saldos y movimientos) en archivos locales de texto estructurado (formato JSON o CSV) mediante una clase utilitaria de persistencia.
+* **Alternativas consideradas:**
+  1. Integrar un motor de bases de datos relacional externo (MySQL/PostgreSQL) o embebido (SQLite).
+  2. Mantener la información únicamente en memoria volátil (RAM) durante la ejecución.
+* **Por qué:** Cumple con la exigencia de que los datos sobrevivan al cierre de la aplicación sin añadir dependencias de red o instalación de drivers que exceden el alcance de este corte, permitiendo aplicar directamente los temas del curso referentes a flujos de archivos (I/O) y manejo de excepciones en Java.
+* **Consecuencia:** El equipo deberá programar manualmente los algoritmos de serialización, deserialización y validación de tipos e integridad de datos al cargar el archivo al inicio del sistema.
+
+---
+
+## Bitácora de Uso de Herramientas de IA
+
+* **Qué se pidió:** Apoyo para formular los requerimientos funcionales bajo el estándar *"El sistema debe permitir al [actor]..."*, estructurar los criterios de aceptación medibles y verificar que el diseño permitiera aplicar herencia, polimorfismo y colecciones.
+* **Qué se recibió:** Un borrador inicial con requerimientos transaccionales genéricos (similares a una tienda electrónica) y criterios de aceptación cualitativos (por ejemplo, "el sistema debe ser rápido y no fallar").
+* **Qué se corrigió:** El equipo descartó los requerimientos genéricos y los adaptó a la operativa real del Casino Broadway, introduciendo los actores operativos reales (Cajero, Crúpier, Técnico, Administrador), reglas exactas de pago (35:1, 3:2, 10x), validaciones de juego responsable (rechazo a menores de 18 años y topes de pérdida) y formuló la tabla de requerimientos no funcionales (RNF).
 
 ## Documentación
 
