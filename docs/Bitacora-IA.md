@@ -22,5 +22,16 @@
       <td align="center"><img src="https://github.com/user-attachments/assets/0516d35f-ed2a-4701-8e38-0fb5b2ee5064" width="400"></td>
       <td>Imagen usada para apoyarse en la creación de la clase Casino con sus respectivos hijos, pero sin incluir todos los atributos y clases que nos sugería la IA</td>
     </tr>
+    <tr>
+      <td>24/09/2026</td>
+      <td>Gemini</td>
+      <td>1.5 Pro</td>
+      <td><details>
+          <summary>Ver prompt completo</summary>
+          Basándote en las instrucciones y la rúbrica de evaluación de la Entrega 1 del Proyecto Integrador (claridad del problema, calidad de requerimientos, potencial de diseño en POO y trabajo en equipo), evalúa nuestro borrador del README.md para el "Proyecto Broadway" (Casino Broadway). Queremos saber la calificación estimada sobre 5.0, qué vacíos o fallas tenemos frente a la rúbrica, qué requerimientos no funcionales (RNF) debemos agregar, cómo corregir el formato de los requerimientos funcionales (especialmente RF-11), cómo formular al menos dos decisiones de diseño bajo el esquema oficial (decisión · alternativas · por qué · consecuencia) y cómo enriquecer la tabla de trazabilidad hacia la Entrega 2 con temas de POO (polimorfismo, colecciones, excepciones y archivos).
+      </details></td>
+      <td>Diagnóstico detallado por criterios de rúbrica, corrección de la fila descuadrada del RF-11, formulación de 3 Requerimientos No Funcionales (RNF-01 a RNF-03), redacción estructurada de 2 decisiones de arquitectura (jerarquía polimórfica en juegos y persistencia en archivos locales JSON/CSV), desglose de temas de POO en la tabla de trazabilidad y entrega del documento final unificado con calificación proyectada de 5.0/5.0.</td>
+      <td>Se incorporaron los 3 RNF y la corrección de RF-11, se embebieron las dos decisiones de diseño y la bitácora directamente en el cuerpo principal del documento en lugar de dejarlas solo como enlaces externos, se refinó la tabla de trazabilidad especificando colecciones y polimorfismo en vez de solo herencia, y se corrigieron erratas tipográficas en los roles y clases antes del commit final.</td>
+    </tr>
   </tbody>
 </table>
