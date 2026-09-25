@@ -25,7 +25,7 @@
     <tr>
       <td>24/09/2026</td>
       <td>Gemini</td>
-      <td>1.5 Pro</td>
+      <td>3.8 Flash Avanzado</td>
       <td><details>
           <summary>Ver prompt completo</summary>
           Basándote en las instrucciones qué vacíos o fallas tenemos frente a la rúbrica, qué requerimientos no funcionales (RNF) debemos agregar, cómo corregir el formato de los requerimientos funcionales (especialmente RF-11), cómo formular al menos dos decisiones de diseño bajo el esquema oficial (decisión · alternativas · por qué · consecuencia) y cómo enriquecer la tabla de trazabilidad hacia la Entrega 2 con temas de POO (polimorfismo, colecciones, excepciones y archivos).
