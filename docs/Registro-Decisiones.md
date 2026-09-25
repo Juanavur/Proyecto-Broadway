@@ -1,3 +1,5 @@
+Este documento registra las principales decisiones tomadas durante el diseño y desarrollo del sistema del Casino Broadway, junto a su respectivas justificación y requerimientos.
+
 Se crea el diagrama UML, el cual define las bases de nuestra organizacion para el proximo desarrollo del codigo para tener una propocia organizacion en este mismo, utilizando las herramientas dadas por el maestro (Lucidchart), agrego imagen;
 
 <img width="1600" height="704" alt="image" src="https://github.com/user-attachments/assets/890f7acb-b1e2-4f30-b4d7-4f3800c6ab57" />
