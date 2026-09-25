@@ -1,5 +1,5 @@
 ## Tabla de requerimientos
-Para comenzar con la entrega 2, se empezarnán a abordar los RF-01, RF-02 Y RF-03, puesto que estos 3 brindan las bases para el sistema de clientes y de empleados, lo cual permitirá avanzar en el proyecto y crear las bases de los demás sistemas que son necesitados.
+Para comenzar con la entrega 2, se empezarán a abordar los RF-01, RF-02 Y RF-03, puesto que estos 3 brindan las bases para el sistema de clientes y de empleados, lo cual permitirá avanzar en el proyecto y crear las bases de los demás sistemas que son necesitados.
 
 | ID | Requerimiento | Descripción | Actor | Prioridad | Criterio de aceptación |
 |---|---|---|---|---|---|
