@@ -26,12 +26,9 @@ Dentro de este esta la desconexión e inconsistencia de sus flujos de informaci�
 ### Impacto
 Analizamos el impacto desde tres distintas perspectivas:
 
--En lo técnico, toda la información de clientes, empleados, mesas, fichas y apuestas queda en un solo sistema y se guarda en archivos, por lo que no se pierde entre turnos ni al cerrar la aplicación. Los pagos se calculan automáticamente según la tabla de cada juego (35:1 en el pleno de ruleta, 3:2 en el blackjack natural), las apuestas se validan contra los límites de la mesa y el saldo del cliente, y cada empleado solo puede usar las funciones de su cargo. Esto elimina los errores de cálculo y de digitación, y permite rastrear quién hizo cada operación.
-
--En lo económico, el cierre de caja se genera a partir de los movimientos registrados y el sistema señala de inmediato cualquier descuadre entre el balance esperado y el efectivo contado. Así se reducen las pérdidas por pagos mal calculados y por fugas de dinero o fichas que hoy no se detectan, y el cierre de turno toma menos tiempo. Además, el programa de fidelidad automático (niveles Bronce, Plata, Oro y VIP con cashback) le da al casino una herramienta para retener a sus clientes frecuentes.
-
--En lo social, el sistema rechaza el registro de menores de 18 años y guarda un historial por cliente de lo que apuesta y pierde. Esto le permite al casino cumplir con las normas de juego responsable, evitar sanciones legales y proteger a los apostadores. Para los empleados, trabajar sin planillas manuscritas reduce la presión y los conflictos al cuadrar la caja al final de cada turno.
-
+* En lo técnico, toda la información de clientes, empleados, mesas, fichas y apuestas queda en un solo sistema y se guarda en archivos, por lo que no se pierde entre turnos ni al cerrar la aplicación. Los pagos se calculan automáticamente según la tabla de cada juego (35:1 en el pleno de ruleta, 3:2 en el blackjack natural), las apuestas se validan contra los límites de la mesa y el saldo del cliente, y cada empleado solo puede usar las funciones de su cargo. Esto elimina los errores de cálculo y de digitación, y permite rastrear quién hizo cada operación.
+* En lo económico, el cierre de caja se genera a partir de los movimientos registrados y el sistema señala de inmediato cualquier descuadre entre el balance esperado y el efectivo contado. Así se reducen las pérdidas por pagos mal calculados y por fugas de dinero o fichas que hoy no se detectan, y el cierre de turno toma menos tiempo. Además, el programa de fidelidad automático (niveles Bronce, Plata, Oro y VIP con cashback) le da al casino una herramienta para retener a sus clientes frecuentes.
+* En lo social, el sistema rechaza el registro de menores de 18 años y guarda un historial por cliente de lo que apuesta y pierde. Esto le permite al casino cumplir con las normas de juego responsable, evitar sanciones legales y proteger a los apostadores. Para los empleados, trabajar sin planillas manuscritas reduce la presión y los conflictos al cuadrar la caja al final de cada turno.
 
 ## Roles del Equipo
 
