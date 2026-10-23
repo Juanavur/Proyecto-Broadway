@@ -12,17 +12,6 @@
 
   <tbody>
     <tr>
-      <td>09/09/2026</td>
-      <td>Anthropic</td>
-      <td>Claude 5.5 Sonnet</td>
-      <td><details>
-          <summary>Ver prompt completo</summary>
-          Apoyo para formular los requerimientos funcionales bajo el estándar "El sistema debe permitir al [actor]...", estructurar los criterios de aceptación medibles y verificar que el diseño permitiera aplicar herencia, polimorfismo y colecciones.
-      </details></td>
-      <td>Un borrador inicial con requerimientos transaccionales genéricos (similares a una tienda electrónica) y criterios de aceptación cualitativos (por ejemplo, "el sistema debe ser rápido y no fallar").</td>
-      <td>El equipo descartó los requerimientos genéricos y los adaptó a la operativa real del Casino Broadway, introduciendo los actores operativos reales (Cajero, Crúpier, Técnico, Administrador), reglas exactas de pago (35:1, 3:2, 10x), validaciones de juego responsable (rechazo a menores de 18 años y topes de pérdida) y formuló la tabla de requerimientos no funcionales (RNF).</td>
-    </tr>
-    <tr>
       <td>18/09/2026</td>
       <td>Gemini</td>
       <td>3.6 Flash</td>
@@ -43,6 +32,17 @@
       </details></td>
       <td>Diagnóstico detallado corrección de la fila descuadrada del RF-11, formulación de 3 Requerimientos No Funcionales (RNF-01 a RNF-03), redacción estructurada de 2 decisiones de arquitectura (jerarquía polimórfica en juegos y persistencia en archivos locales JSON/CSV), desglose de temas de POO en la tabla de trazabilidad y entrega del documento final.</td>
       <td>Se incorporaron los 3 RNF y la corrección de RF-11, se embebieron las dos decisiones de diseño y la bitácora directamente en el cuerpo principal del documento en lugar de dejarlas solo como enlaces externos, se refinó la tabla de trazabilidad especificando colecciones y polimorfismo en vez de solo herencia, y se corrigieron erratas tipográficas en los roles y clases antes del commit final.</td>
+    </tr>
+    <tr>
+      <td>09/10/2026</td>
+      <td>Anthropic</td>
+      <td>Claude 5.5 Sonnet</td>
+      <td><details>
+          <summary>Ver prompt completo</summary>
+          Apoyo para formular los requerimientos funcionales bajo el estándar "El sistema debe permitir al [actor]...", estructurar los criterios de aceptación medibles y verificar que el diseño permitiera aplicar herencia, polimorfismo y colecciones.
+      </details></td>
+      <td>Un borrador inicial con requerimientos transaccionales genéricos (similares a una tienda electrónica) y criterios de aceptación cualitativos (por ejemplo, "el sistema debe ser rápido y no fallar").</td>
+      <td>El equipo descartó los requerimientos genéricos y los adaptó a la operativa real del Casino Broadway, introduciendo los actores operativos reales (Cajero, Crúpier, Técnico, Administrador), reglas exactas de pago (35:1, 3:2, 10x), validaciones de juego responsable (rechazo a menores de 18 años y topes de pérdida) y formuló la tabla de requerimientos no funcionales (RNF).</td>
     </tr>
     <tr>
       <td>22/10/2026</td>
