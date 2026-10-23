@@ -12,7 +12,7 @@
 
   <tbody>
     <tr>
-      <td>12/09/2026</td>
+      <td>09/09/2026</td>
       <td>Anthropic</td>
       <td>Claude 5.5 Sonnet</td>
       <td><details>
