@@ -44,5 +44,16 @@
       <td>Diagnóstico detallado corrección de la fila descuadrada del RF-11, formulación de 3 Requerimientos No Funcionales (RNF-01 a RNF-03), redacción estructurada de 2 decisiones de arquitectura (jerarquía polimórfica en juegos y persistencia en archivos locales JSON/CSV), desglose de temas de POO en la tabla de trazabilidad y entrega del documento final.</td>
       <td>Se incorporaron los 3 RNF y la corrección de RF-11, se embebieron las dos decisiones de diseño y la bitácora directamente en el cuerpo principal del documento en lugar de dejarlas solo como enlaces externos, se refinó la tabla de trazabilidad especificando colecciones y polimorfismo en vez de solo herencia, y se corrigieron erratas tipográficas en los roles y clases antes del commit final.</td>
     </tr>
+    <tr>
+      <td>22/10/2026</td>
+      <td>Gemini</td>
+      <td>3.8 Flash</td>
+      <td><details>
+          <summary>Ver prompt completo</summary>
+          Validación y contraste de un borrador preliminar de la tabla de requerimientos y la tabla de trazabilidad inicial frente al README principal: revisión de coherencia en criterios de aceptación (especialmente RF-11), clases involucradas, rigor en conceptos de POO y corrección de erratas en actores y nombres de clases.
+      </details></td>
+      <td>Diagnóstico de inconsistencias evidenciando un retroceso en el criterio de aceptación del RF-11 (redacción informal), simplificación excesiva de los temas de POO en la trazabilidad (omisión de polimorfismo, colecciones y manejo de I/O), exclusión de la clase base Persona y erratas tipográficas en clases y roles (Cruppier, adminstrador, tecnico de maquinas). Entrega de las dos tablas completamente sincronizadas y corregidas.</td>
+      <td>El equipo descartó la redacción informal de RF-11 y reincorporó el criterio de prueba verificable, sincronizó la tabla de trazabilidad mapeando polimorfismo, clases abstractas, colecciones y manejo de excepciones/archivos a sus clases respectivas, normalizó los nombres de las clases (reincorporando Persona) y corrigió las inconsistencias en actores y ortografía.</td>
+    </tr>
   </tbody>
 </table>
