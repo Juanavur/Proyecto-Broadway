@@ -14,7 +14,7 @@
     <tr>
       <td>12/09/2026</td>
       <td>Anthropic</td>
-      <td>Claude 3.5 Sonnet</td>
+      <td>Claude 5.5 Sonnet</td>
       <td><details>
           <summary>Ver prompt completo</summary>
           Apoyo para formular los requerimientos funcionales bajo el estándar "El sistema debe permitir al [actor]...", estructurar los criterios de aceptación medibles y verificar que el diseño permitiera aplicar herencia, polimorfismo y colecciones.
