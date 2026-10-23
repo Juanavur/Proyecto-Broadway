@@ -103,12 +103,6 @@ Para la Entrega 2 se abordarán prioritariamente los requerimientos **RF-01, RF-
 
 ---
 
-## Bitácora de Uso de Herramientas de IA
-
-* **Qué se pidió:** Apoyo para formular los requerimientos funcionales bajo el estándar *"El sistema debe permitir al [actor]..."*, estructurar los criterios de aceptación medibles y verificar que el diseño permitiera aplicar herencia, polimorfismo y colecciones.
-* **Qué se recibió:** Un borrador inicial con requerimientos transaccionales genéricos (similares a una tienda electrónica) y criterios de aceptación cualitativos (por ejemplo, "el sistema debe ser rápido y no fallar").
-* **Qué se corrigió:** El equipo descartó los requerimientos genéricos y los adaptó a la operativa real del Casino Broadway, introduciendo los actores operativos reales (Cajero, Crúpier, Técnico, Administrador), reglas exactas de pago (35:1, 3:2, 10x), validaciones de juego responsable (rechazo a menores de 18 años y topes de pérdida) y formuló la tabla de requerimientos no funcionales (RNF).
-
 ## Documentación
 
 - [Bitácora de uso de IA](docs/Bitacora-IA.md)
