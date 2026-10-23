@@ -159,7 +159,6 @@ Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin d
 - La implementan `Mesa` (abierta o cerrada) y `MaquinaTragaMoneda` (operativa o en mantenimiento).
 - Las dos se ponen en servicio y se sacan de servicio, y ninguna permite jugar
 
-- <img width="5889" height="2889" alt="umlfinal" src="https://github.com/user-attachments/assets/29a23203-ea10-4531-83bc-672c95d16680" />
 
 ---
 
