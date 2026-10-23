@@ -101,6 +101,66 @@ Para la Entrega 2 se abordarán prioritariamente los requerimientos **RF-01, RF-
 * **Por qué:** Cumple con la exigencia de que los datos sobrevivan al cierre de la aplicación sin añadir dependencias de red o instalación de drivers que exceden el alcance de este corte, permitiendo aplicar directamente los temas del curso referentes a flujos de archivos (I/O) y manejo de excepciones en Java.
 * **Consecuencia:** El equipo deberá programar manualmente los algoritmos de serialización, deserialización y validación de tipos e integridad de datos al cargar el archivo al inicio del sistema.
 
+
+## Diagrama UML
+
+En esta sección se explica cómo el diagrama de clases UML aplicando distintos conceptos: **clases**, **atributos y métodos estáticos**, **clases anidadas**, **interfaces** y **polimorfismo**. Para cada uno se describe dónde aparece en el diseño, para qué sirve y con qué decisión del proyecto se relaciona.
+
+### Clases
+
+El sistema se organiza alrededor de la clase "casino", que es el punto central: guarda las listas de clientes, empleados, mesas, máquinas y juegos, y la caja. A partir de ella se agrupan las demás clases según su responsabilidad:
+
+| Grupo | Clases | Para qué sirven | RF |
+|---|---|---|---|
+| Gestión | "casino" | Registra clientes y empleados, los busca por documento y conecta todas las partes del sistema. | Todos |
+| Personas | `Persona` *(abstracta)*, `Cliente`, `Trabajador` *(abstracta)*, `Administrador`, `Cajero`, `Crupier`, `TecnicoMaquina` | Datos comunes de cualquier persona; saldo, nivel y apuestas del cliente; usuario, contraseña y funciones de cada cargo. | RF-01, RF-02, RF-03, RF-10 |
+| Juegos y apuestas | `Juego` *(abstracta)*, `Ruleta`, `Blackjack`, `Mesa`, `RondaMesa`, `Apuesta` | Catálogo de juegos con su forma de pagar, mesas con sus límites y crupier, rondas y apuestas de cada jugador. | RF-04, RF-05, RF-08 |
+| Máquinas | `MaquinaTragaMoneda`, `MaquinaTragaMoneda.RondaMaquina` | Máquinas con su costo por giro y estado, y el registro de cada giro. | RF-09 |
+| Caja y finanzas | `Caja`, `TurnoCaja`, `MovimientoCaja`, `Caja.CierreTurno` | Ventas y canjes de fichas, movimientos de dinero por turno y cierre de caja con detección de descuadre. | RF-06, RF-07 |
+
+Además de los conceptos de esta entrega, el diseño usa **herencia** (`Persona → Cliente / Trabajador → cargos`, `Juego → Ruleta / Blackjack`) y **encapsulamiento**: los atributos son privados (`-`) y solo cambian a través de métodos que validan, por ejemplo el saldo del cliente solo cambia con `comprarFichas` y `apostar`.
+
+### Atributos y métodos estáticos
+
+Un miembro **estático** pertenece a la **clase** y no a cada objeto: existe una sola copia compartida por todos y se puede usar sin crear objetos. En el diagrama se marcan con `<static>` y aparecen subrayados.
+
+| Miembro estático | Cómo se aplica | Utilidad en el diseño | RF |
+|---|---|---|---|
+| `Cliente.edadMinima = 18` | La edad mínima para registrarse es la misma para todos los clientes. `esMayorDeEdad(fechaNacimiento)` la usa para aceptar o rechazar el registro. | La regla queda escrita en un solo lugar; si cambia la ley, se cambia una línea. Se puede consultar antes de crear el cliente, por ejemplo para mostrar un error en el formulario. | RF-01 |
+| `Casino.totalMesas = 50` | Límite de mesas que puede tener el casino. | Es un dato del casino y no de una mesa en particular, así que no tiene sentido repetirlo en cada objeto. | RF-04 |
+| `NivelFidelidad.cashbackBronce = 0.0`, `cashbackPlata = 0.02`, `cashbackOro = 0.05`, `cashbackVip = 0.08` | Porcentaje de cashback de cada nivel. | Son las reglas del programa de fidelidad: valores fijos que comparten todos los clientes. | RF-10 |
+| `NivelFidelidad.calcularCashback(nivel, perdida)` | Calcula el cashback a partir del nivel y lo que perdió el cliente, por ejemplo Oro con 100.000 de pérdida devuelve 5.000. | Es un cálculo que no depende de ningún cliente en particular, por eso es estático: se llama directamente sobre la clase. | RF-10 |
+
+**Cómo podría ampliarse:** el mismo criterio sirve para otras reglas fijas del negocio, como la capacidad máxima de una mesa (7 jugadores), el multiplicador de las máquinas (10 veces la apuesta) o la longitud mínima de la contraseña (6 caracteres). También para contadores compartidos, como un `siguienteId` estático en `MovimientoCaja` que le dé a cada movimiento un número único.
+
+### Clases anidadas
+
+Una **clase anidada** se declara dentro de otra porque solo tiene sentido junto a ella. En el diagrama se conecta con una línea que termina en **⊕** del lado de la clase que la contiene.
+
+| Clase anidada | Dentro de | Por qué está anidada | RF |
+|---|---|---|---|
+| `Caja.CierreTurno` | `Caja` | Es el resultado del cierre de caja: ventas, canjes y efectivo contado, con `getBalance()` y `hayDescuadre()`. Solo existe como parte de una caja y nadie más la usa. `TurnoCaja.cerrar(efectivo)` la crea al terminar el turno. | RF-07 |
+| `NivelFidelidad` | `Cliente` | El nivel (Bronce, Plata, Oro, VIP) y su cashback solo tienen sentido para un cliente. | RF-10 |
+| `RondaMaquina` | `MaquinaTragaMoneda` | Cada giro (hora, costo, premio y jugador) pertenece a una máquina concreta; `jugarGiro(cliente)` la crea. | RF-09 |
+
+**Utilidad:** el código queda agrupado donde se usa (alta cohesión), el paquete no se llena de clases pequeñas que nadie más usa y el nombre deja clara la relación: `Caja.CierreTurno` se lee como "el cierre de una caja".
+
+**Cómo podría aplicarse mejor:** en Java hay dos tipos de clase anidada. Una **estática** no necesita un objeto de la clase externa, mientras que una **interna** sí puede usar sus datos.
+- `Caja.CierreTurno` debería ser **estática**, porque solo guarda números del resumen.
+- `RondaMaquina` debería ser **interna**, porque necesita el costo por giro de *su* máquina.
+- `RondaMesa` podría pasar a ser una clase interna de `Mesa` (`Mesa.RondaMesa`): una ronda siempre ocurre en una mesa y necesita sus límites, su capacidad y su juego.
+- `NivelFidelidad` podría escribirse como un `enum` anidado.
+
+### Interfaces
+
+Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin decir **cómo**. En el diagrama se ve como una línea punteada con un triángulo vacío que apunta a la interfaz.
+
+**`Operable`**: métodos `estaDisponible()`, `abrir()` y `cerrar()`.
+- La implementan `Mesa` (abierta o cerrada) y `MaquinaTragaMoneda` (operativa o en mantenimiento).
+- Las dos se ponen en servicio y se sacan de servicio, y ninguna permite jugar
+
+- <img width="5889" height="2889" alt="umlfinal" src="https://github.com/user-attachments/assets/29a23203-ea10-4531-83bc-672c95d16680" />
+
 ---
 
 ## Documentación
