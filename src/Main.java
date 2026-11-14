@@ -1,7 +1,6 @@
-package broadway;
-
-import broadway.vista.Tema;
-import broadway.vista.VentanaPrincipal;
+import servicios.Casino;
+import ui.Tema;
+import ui.VentanaPrincipal;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -20,7 +19,7 @@ public class Main {
                 // Si falla, se usa el aspecto por defecto.
             }
             Tema.aplicarGlobal();
-            broadway.sonido.Sonidos.iniciar();
+            servicios.sonido.Sonidos.iniciar();
             VentanaPrincipal ventana = new VentanaPrincipal(new Casino());
             ventana.setVisible(true);
         });

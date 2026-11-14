@@ -68,7 +68,7 @@ La partida (efectivo, fichas, cashback e historial) se guarda en `datos/partida.
 1. Instala la extensión **Extension Pack for Java** (VS Code la recomienda sola al abrir la carpeta).
 2. `Archivo → Abrir carpeta…` y escoge la carpeta `CasinoBroadway`.
 3. Espera a que la barra de abajo diga que el proyecto Java está listo.
-4. Abre `src/broadway/Main.java` y pulsa **Run** (o `F5` y escoge **Casino Broadway**).
+4. Abre `src/Main.java` y pulsa **Run** (o `F5` y escoge **Casino Broadway**).
 
 La configuración ya viene en `.vscode/` (carpeta de código `src`, codificación UTF-8 y la configuración de ejecución).
 
@@ -91,25 +91,28 @@ La configuración ya viene en `.idea/` y `CasinoBroadway.iml`.
 ## Estructura
 
 ```
-src/broadway/
-├── Main.java                  Punto de entrada
-├── Casino.java                Reúne la caja, los juegos y el jugador
-├── modelo/                    Jugador, NivelFidelidad, Caja, Movimiento, ResultadoRonda...
-├── cartas/                    Carta, Palo, Valor, Baraja (compartidas por blackjack y póker)
-├── juegos/
-│   ├── Juego.java             Clase abstracta base de todos los juegos
-│   ├── Apuesta.java           Interfaz genérica de las apuestas (ruleta y carreras)
-│   ├── tragamonedas/          Tragamonedas, Simbolo, ResultadoGiro, LineaPremiada
-│   ├── blackjack/             Blackjack, ManoBlackjack, EstadoBlackjack
-│   ├── poker/                 PokerTexasHoldem, EvaluadorPoker, EstrategiaRival y sus 3 estilos...
-│   ├── carreras/              CarreraCaballos, Caballo, SimulacionCarrera, ApuestaCarrera...
-│   └── ruleta/                Ruleta, ApuestaRuleta, TipoApuestaRuleta, ResultadoTirada
+src/
+├── enums/                     Enumeraciones de cartas, juegos, movimientos, fidelidad y sonido
+├── files/                     Imagen de portada
+├── interfaces/                Apuesta, EstrategiaRival y ServicioSonido
+├── modelos/                   Jugador, Caja, Movimiento, ResultadoRonda y excepción de dominio
+│   ├── cartas/                Carta y Baraja (compartidas por blackjack y póker)
+│   └── juegos/                Juego y clases de cada modalidad
+│       ├── blackjack/
+│       ├── carreras/
+│       ├── poker/
+│       ├── ruleta/
+│       └── tragamonedas/
 ├── persistencia/              GestorArchivos (guarda y carga la partida)
-├── sonido/                    ServicioSonido, SonidoActivo, SonidoSilenciado, Sintetizador, Efecto
-└── vista/                     Ventana y pantallas Swing (todo dibujado con Java2D, sin imágenes)
+├── repositorios/              Reservada; todavía no hay clases de repositorio
+├── servicios/                 Casino, Formato y servicios de sonido en sonido/
+├── ui/                        Ventana y pantallas Swing
+└── Main.java                  Punto de entrada
 ```
 
-La lógica de los juegos (`modelo`, `cartas`, `juegos`) no depende de la interfaz: se puede probar sin abrir ninguna ventana.
+Los paquetes coinciden con las rutas dentro de `src`; `Main` no tiene paquete.
+La lógica de los juegos en `modelos` no depende de las pantallas de `ui`: se puede probar sin abrir ninguna ventana.
+Los scripts de ejecución incluyen `src` en el classpath para cargar la imagen de `files`.
 
 ## Decisiones de POO
 

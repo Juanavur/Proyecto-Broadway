@@ -1,11 +1,15 @@
-package broadway.persistencia;
+package persistencia;
 
-import broadway.modelo.Jugador;
+import enums.NivelFidelidad;
+import enums.TipoMovimiento;
+import modelos.Jugador;
+import modelos.Movimiento;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamClass;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +55,20 @@ public class GestorArchivos {
 
     public Jugador cargar() throws IOException {
         try (InputStream in = Files.newInputStream(archivo);
-             ObjectInputStream ois = new ObjectInputStream(in)) {
+             ObjectInputStream ois = new ObjectInputStream(in) {
+                 @Override
+                 protected Class<?> resolveClass(ObjectStreamClass descriptor)
+                         throws IOException, ClassNotFoundException {
+                     // Keep saves written before the package reorganization readable.
+                     return switch (descriptor.getName()) {
+                         case "broadway.modelo.Jugador" -> Jugador.class;
+                         case "broadway.modelo.Movimiento" -> Movimiento.class;
+                         case "broadway.modelo.NivelFidelidad" -> NivelFidelidad.class;
+                         case "broadway.modelo.TipoMovimiento" -> TipoMovimiento.class;
+                         default -> super.resolveClass(descriptor);
+                     };
+                 }
+             }) {
             return (Jugador) ois.readObject();
         } catch (ClassNotFoundException | ClassCastException e) {
             throw new IOException("El archivo de partida no es válido.", e);
