@@ -28,17 +28,6 @@
       <td>Claude Opus 5.5</td>
       <td><details>
           <summary>Ver prompt completo</summary>
-          Escribir el guion de exposición para los 6 integrantes; luego hacerlo más natural ("menos IA"), con más conceptos de POO, y alargar la parte de Daniel. Abrir el proyecto en IntelliJ y contar cuántos archivos tiene.
-      </details></td>
-      <td>Guion por integrante con herencia, encapsulamiento, polimorfismo, interfaces, clases abstractas, enums y persistencia explicados con clases reales del proyecto. Conteo de archivos del proyecto.</td>
-      <td>El equipo pidió reescribir el guion con lenguaje propio y repartir mejor los tiempos entre integrantes.</td>
-    </tr>
-    <tr>
-      <td>20/11/2026</td>
-      <td>Anthropic</td>
-      <td>Claude Opus 5.5</td>
-      <td><details>
-          <summary>Ver prompt completo</summary>
           Implementar la persistencia (RF-11), que aún no estaba en el repositorio, y actualizar las diapositivas con esa parte.
       </details></td>
       <td>Guardado y carga del casino en JSON (datos/casino.json) con escritura segura, respaldo si el archivo está dañado y contraseñas cifradas; pruebas de persistencia; README, Trazabilidad y diapositivas actualizados. Se subió en la rama persistencia.</td>
@@ -94,9 +83,9 @@
       <td>Claude Opus 5.5</td>
       <td><details>
           <summary>Ver prompt completo</summary>
-          Actualizar las diapositivas al último diagrama UML, hacer un diálogo de dos partes para la sección de Personas, explicar Cliente, Persona y Nivel de fidelidad, y hacer las diapositivas más atractivas visualmente (cambiando algunas imágenes).
+          Actualizar las diapositivas al último diagrama UML, explicar Cliente, Persona y Nivel de fidelidad, y hacer las diapositivas más atractivas visualmente (cambiando algunas imágenes).
       </details></td>
-      <td>Presentación actualizada con el UML final, diálogo para dos integrantes y explicación de cada clase.</td>
+      <td>Presentación actualizada con el UML final y explicación de cada clase.</td>
       <td>Se ajustaron imágenes y textos a pedido del equipo.</td>
     </tr>
     <tr>
@@ -116,9 +105,9 @@
       <td>Claude Opus 5.5</td>
       <td><details>
           <summary>Ver prompt completo</summary>
-          Pasar el diagrama de clases a Lucidchart, exportarlo en PNG con el logo del Casino Broadway, crear diapositivas en PowerPoint con un presentador explicando el UML, quitar la persistencia del diagrama y de las diapositivas, y proponer un guion por integrante y las preguntas que podría hacer el profesor.
+          Pasar el diagrama de clases a Lucidchart, exportarlo en PNG con el logo del Casino Broadway, crear diapositivas en PowerPoint con un presentador explicando el UML, quitar la persistencia del diagrama y de las diapositivas, y preparar las preguntas que podría hacer el profesor.
       </details></td>
-      <td>Diagrama en Lucidchart, PNG con logo, presentación de 8 diapositivas con el guion en las notas y lista de preguntas con respuestas.</td>
+      <td>Diagrama en Lucidchart, PNG con logo, presentación de 8 diapositivas y lista de preguntas con respuestas.</td>
       <td>Se quitó la persistencia y el cuadro de "Cómo leer el diagrama"; las diapositivas se hicieron en PowerPoint y no en Lucid.</td>
     </tr>
     <tr>
@@ -127,9 +116,9 @@
       <td>Claude Opus 5.5</td>
       <td><details>
           <summary>Ver prompt completo</summary>
-          Entrega 2: actualizar el diagrama de clases UML con clases, atributos y métodos estáticos, clases anidadas, interfaces y polimorfismo, y explicar en el documento cómo se aplican. Mejorar la legibilidad del diagrama, agregar el logo del casino y proponer el diálogo para exponerlo.
+          Entrega 2: actualizar el diagrama de clases UML con clases, atributos y métodos estáticos, clases anidadas, interfaces y polimorfismo, y explicar en el documento cómo se aplican. Mejorar la legibilidad del diagrama y agregar el logo del casino.
       </details></td>
-      <td>Diagrama UML actualizado (PNG), documento de la Entrega 2 en PDF, logo del Casino Broadway y guion de exposición.</td>
+      <td>Diagrama UML actualizado (PNG), documento de la Entrega 2 en PDF y logo del Casino Broadway.</td>
       <td>Se pidió agrandar la letra y simplificar el diagrama para que se leyera completo.</td>
     </tr>
     <tr>
