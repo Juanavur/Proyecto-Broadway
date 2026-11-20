@@ -1,5 +1,93 @@
 # Proyecto Broadway
 
+<p align="center"><img src="docs/capturas-version-uml/01-portada.png" alt="Casino Broadway" width="100%"></p>
+
+## 🎰 Cómo ejecutarlo
+
+1. Descarga **[`CasinoBroadway.jar`](CasinoBroadway.jar)** y dale doble clic (o `java -jar CasinoBroadway.jar`). Necesitas **Java 17 o superior**.
+2. En la portada presiona **ESPACIO**.
+3. Entra con una de las cuentas de prueba (también hay botones en la pantalla para llenarlas):
+
+| Cargo | Usuario | Contraseña | Qué puede hacer |
+|---|---|---|---|
+| Administrador | `admin` | `admin123` | Registrar empleados y su cargo, crear/abrir/cerrar mesas, consultar clientes |
+| Cajero | `cajero` | `cajero123` | Registrar clientes, vender y canjear fichas, cashback, abrir y cerrar turnos de caja |
+| Crupier | `crupier` | `crupier123` | Registrar apuestas y jugar las rondas de Ruleta y Blackjack, sala de tragamonedas |
+| Técnico de máquinas | `tecnico` | `tecnico123` | Registrar máquinas y ponerlas en mantenimiento |
+
+### 🎲 Simulación de cliente
+
+En la pantalla de inicio de sesión, **"Entrar como cliente (simulación)"** crea un cliente al azar (nombre, número de documento, edad, nivel de fidelidad y dinero en efectivo). Con **"Entrar al casino"** se abre el juego completo de la primera versión (tragamonedas, blackjack, póker Texas Hold'em, carreras y ruleta) como ese cliente. **"Terminar simulación"** cierra el juego y vuelve al inicio de sesión. La simulación no guarda nada en archivos.
+
+| Cliente generado | Sala de juegos del cliente |
+|---|---|
+| ![Simulación](docs/capturas-version-uml/16-simulacion-cliente.png) | ![Lobby](docs/capturas-version-uml/17-simulacion-lobby.png) |
+
+El juego de cliente vive aparte, en el paquete `broadway.simulacion` (con su propio modelo: `Jugador`, `Caja`, juegos y vistas), para no mezclarlo con las clases del diagrama UML de `broadway.modelo`.
+
+En IntelliJ: `File → Open…`, escoger la carpeta del repositorio y ejecutar **Casino Broadway** (`broadway.Main`).
+
+| Inicio de sesión | Administrador · Mesas |
+|---|---|
+| ![Login](docs/capturas-version-uml/02-login.png) | ![Mesas](docs/capturas-version-uml/04-Administrador-Mesas.png) |
+| **Cajero · Clientes** | **Cajero · Caja** |
+| ![Clientes](docs/capturas-version-uml/06-Cajero-Clientes.png) | ![Caja](docs/capturas-version-uml/07-Cajero-Caja.png) |
+| **Crupier · Ruleta** | **Crupier · Blackjack** |
+| ![Ruleta](docs/capturas-version-uml/12-ruleta-final.png) | ![Blackjack](docs/capturas-version-uml/13-blackjack.png) |
+| **Sala de máquinas** | **Técnico · Máquinas** |
+| ![Tragamonedas](docs/capturas-version-uml/14-slots.png) | ![Máquinas](docs/capturas-version-uml/15-Tecnico-Maquinas.png) |
+
+## Correspondencia UML ↔ código
+
+Todas las clases del diagrama existen en `src/broadway/modelo/` con el mismo nombre, atributos y métodos:
+
+| Clase del UML | Archivo | Notas |
+|---|---|---|
+| `Casino` (+ `totalMesas = 50` estático) | `Casino.java` | Listas de clientes, empleados, mesas, máquinas y juegos; `registrarCliente`, `registrarEmpleado`, `buscarClientePorDocumento` |
+| `Persona` *(abstracta)* | `Persona.java` | `documento`, `nombre`, `fechaNacimiento`, `getEdad()` |
+| `Cliente` (+ `edadMinima = 18` estático) | `Cliente.java` | `esMayorDeEdad`, `comprarFichas`, `apostar` |
+| `NivelFidelidad` (anidada en `Cliente`) | `Cliente.java` | `cashbackBronce/Plata/Oro/Vip` estáticos y `calcularCashback(nivel, perdida)` estático |
+| `Trabajador` *(abstracta)* | `Trabajador.java` | `id`, `usuario`, `contraseña`, `autenticacion`, `puedeRealizar` abstracto |
+| `Administrador`, `Cajero`, `Crupier`, `TecnicoMaquina` | un archivo cada una | Cada cargo redefine `puedeRealizar` (polimorfismo) |
+| `Operable` *(interfaz)* | `Operable.java` | La implementan `Mesa` y `MaquinaTragaMoneda` |
+| `Mesa` | `Mesa.java` | `validarMontoApuesta`, `asignarCrupier`, `nuevaRonda`, `abrir`, `cerrar`, `estaDisponible` |
+| `Juego` *(abstracta)*, `Ruleta`, `Blackjack` | `Juego.java`, `Ruleta.java`, `Blackjack.java` | `calcularPremio(monto)` polimórfico y sobrecargado con `calcularPremio(monto, tipo)` |
+| `RondaMesa` | `RondaMesa.java` | `apuestas`, `agregarApuesta`, `liquidar(resultado)` |
+| `Apuesta` | `Apuesta.java` | `tipo`, `monto`, `cliente`, `calcularPago(juego)` |
+| `MaquinaTragaMoneda` | `MaquinaTragaMoneda.java` | `jugarGiro`, `estaDisponible`, `abrir`, `cerrar` |
+| `RondaMaquina` (anidada) | `MaquinaTragaMoneda.java` | `hora`, `costo`, `premio`, `jugador` |
+| `Caja` | `Caja.java` | `registrarVenta`, `registrarCanje`, `abrirTurno`, `turnoActual`, `cerrarTurno` |
+| `Caja.CierreTurno` (anidada) | `Caja.java` | `ventas`, `canjes`, `efectivoContado`, `getBalance`, `hayDescuadre` |
+| `TurnoCaja` | `TurnoCaja.java` | `registrarMovimiento`, `calcularSaldoEsperado`, `cerrar(efectivo)` |
+| `MovimientoCaja` | `MovimientoCaja.java` | `tipo`, `monto`, `fecha` |
+
+**Diferencias pequeñas con el diagrama (para actualizarlo si se quiere):**
+- Algunos métodos que en el UML no tienen parámetros los necesitan para funcionar: `crearMesa(codigo, juego, minima, maxima, capacidad, crupier)`, `registrarEmpleados(empleado)`, `definirCargoEmpleado(cargo, ...)`, `ponerEnMantenimiento(maquina)` y `registrarMaquinasTragaMonedas(codigo, costoPorGiro)`.
+- Métodos de apoyo que no están en el UML: getters, `Casino.iniciarSesion`, `Casino.registrarJuego`, `Casino.agregarMesa/agregarMaquina`, `Cliente.cobrarPremio/retirarFichas/reclamarCashback`, `Juego.liquidarApuesta`, `Ruleta.girar`, `Blackjack.nuevaCarta/valorMano`, `Mesa.rondaActual` y `RondaMaquina.getCarretes` (para dibujar los símbolos).
+- `NivelFidelidad` se implementó como `enum` anidado (Bronce, Plata, Oro, VIP), con los porcentajes estáticos del UML.
+- No hay persistencia en archivos: el diagrama actual no la incluye (RF-11 queda pendiente).
+
+La interfaz gráfica está en `src/broadway/vista/` y **no tiene reglas del negocio**: solo llama a los métodos del modelo y muestra los errores que este lanza.
+
+## Requerimientos cubiertos
+
+| RF | Cómo se cumple en esta rama |
+|---|---|
+| RF-01 | `Cajero.registrarClientes` → `Cliente` rechaza menores de 18 y `Casino.registrarCliente` rechaza documentos repetidos |
+| RF-02 | `Administrador.registrarEmpleados`: usuario único y contraseña de mínimo 6 caracteres |
+| RF-03 | `puedeRealizar` de cada cargo: el cajero no crea mesas, el crupier no vende fichas, solo el técnico cambia el estado de una máquina |
+| RF-04 | `Mesa`: mínima < máxima, capacidad 1 a 7, código único, crupier asignado, máximo `totalMesas` |
+| RF-05 | `Casino.registrarJuego`: Ruleta y Blackjack, sin nombres repetidos |
+| RF-06 | `Cajero.venderFichas` / `canjearFichas`: montos > 0 y no se canjea más de lo que se tiene |
+| RF-07 | `Caja` + `TurnoCaja` + `CierreTurno`: ventas 1.000.000 y canjes 700.000 → balance 300.000; si el efectivo no coincide, `DESCUADRE` |
+| RF-08 | `Crupier.registrarApuestas` valida mínimo, máximo y saldo; pleno de 10.000 gana 350.000 y blackjack natural de 10.000 gana 15.000 |
+| RF-09 | `MaquinaTragaMoneda`: en mantenimiento no deja jugar, 3 iguales pagan 10 veces y cada giro descuenta su valor |
+| RF-10 | Nivel según total apostado (Plata desde 2.000.000), cashback Oro 5 %, el nivel nunca baja |
+| RF-11 | Pendiente (no está en el diagrama) |
+
+---
+
+
 ## Descripción del Problema
 
 ### Contexto
@@ -104,6 +192,8 @@ Para la Entrega 2 se abordarán prioritariamente los requerimientos **RF-01, RF-
 
 ## Diagrama UML
 
+![Diagrama UML](docs/Diagrama%20UML.png)
+
 En esta sección se explica cómo el diagrama de clases UML aplicando distintos conceptos: **clases**, **atributos y métodos estáticos**, **clases anidadas**, **interfaces** y **polimorfismo**. Para cada uno se describe dónde aparece en el diseño, para qué sirve y con qué decisión del proyecto se relaciona.
 
 ### Clases
@@ -164,6 +254,6 @@ Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin d
 
 ## Documentación
 
-- [Bitácora de uso de IA](docs/Bitacora-IA.md)
-- [Registro de decisiones](docs/Registro-Decisiones.md)
+- [Bitácora de uso de IA](docs/Bitacora%20AI.md)
+- [Registro de decisiones](docs/Registro%20Decisiones.md)
 - [Plan y trazabilidad](docs/Trazabilidad.md)

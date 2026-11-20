@@ -11,4 +11,4 @@ if errorlevel 1 (
   exit /b 1
 )
 del fuentes.txt
-java -cp "bin;src" Main
+java -cp bin broadway.Main
