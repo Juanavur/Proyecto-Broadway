@@ -4,7 +4,7 @@
 
 ## Ejecutar el casino
 
-Abre [`CasinoBroadway.jar`](../CasinoBroadway.jar) con Java 17 o superior. También puedes ejecutar `java -jar CasinoBroadway.jar` desde la raíz del proyecto. Pulsa **Espacio** en la portada y selecciona una cuenta de prueba en el inicio de sesión.
+En Linux x86-64 ejecuta `java -jar CasinoBroadway.jar`. El [JAR](../CasinoBroadway.jar) incluye JavaFX para esta plataforma. Pulsa **Espacio** en la portada para acceder como cliente o usar una cuenta de empleado de prueba.
 
 | Cargo | Usuario | Contraseña | Funciones |
 |---|---|---|---|
@@ -15,39 +15,43 @@ Abre [`CasinoBroadway.jar`](../CasinoBroadway.jar) con Java 17 o superior. Tambi
 
 ## Juegos
 
+Pulsa **Entrar como cliente** para crear un cliente nuevo y escribir cuánto efectivo trae. Desde el lobby se accede a las mesas, las máquinas y la caja. La barra superior muestra el efectivo, las fichas y el cashback, y permite silenciar los sonidos.
+
 | Juego | Operación |
 |---|---|
-| Ruleta | El crupier registra apuestas de los clientes, gira la rueda europea y liquida la ronda. |
-| Blackjack | El crupier reparte las cartas y liquida la mano. El blackjack natural paga 3 a 2. |
-| Tragamonedas | La máquina descuenta el costo del giro. Tres símbolos iguales pagan diez veces el costo. |
+| Ruleta | Selecciona una ficha y pulsa una casilla del tapete. Puedes retirar o repetir las apuestas. **GIRAR** registra las apuestas con el crupier asignado y liquida la ronda al terminar. |
+| Blackjack | Arma la apuesta con fichas y pulsa **Repartir**. Puedes pedir carta o plantarte. El blackjack natural paga 3 a 2. |
+| Tragamonedas | Elige una máquina en servicio. El giro descuenta el costo de esa máquina. Tres símbolos iguales en la línea central pagan diez veces el costo. |
+| Caja | Compra fichas con tu efectivo o cámbialas de vuelta con un turno de caja abierto. El historial muestra los movimientos de esa visita y el panel de cashback permite reclamar lo acumulado. |
 
 La aplicación inicia con datos de demostración. Los registros y las transacciones de la sesión se mantienen en memoria.
 
 ## Requisitos
 
-- **JDK 17 o superior** (recomendado: Temurin 21, <https://adoptium.net>).
-- No usa librerías externas: todo es Java estándar.
+- **JDK 17 o superior**. El proyecto se verificó con JDK 21 y JavaFX 21.0.6.
+- Para compilar desde el código, usa la carpeta `lib` de un SDK **JavaFX 21** compatible con tu sistema y arquitectura.
 
 ## Abrirlo en Visual Studio Code
 
 1. Instala la extensión **Extension Pack for Java**.
 2. `Archivo → Abrir carpeta…` y escoge la carpeta `CasinoBroadway`.
-3. Espera a que la barra de abajo diga que el proyecto Java está listo.
-4. Abre `src/Main.java` y pulsa **Run**.
+3. Agrega los JAR de JavaFX al proyecto mediante **Java: Configure Classpath**.
+4. Ejecuta `Main` con las opciones de VM `--module-path "ruta/al/sdk/lib" --add-modules javafx.controls`.
 
 ## Abrirlo en IntelliJ IDEA
 
 1. `File → Open…` y escoge la carpeta `CasinoBroadway`.
 2. Si aparece el aviso *Project JDK is not defined*, pulsa **Setup SDK** y escoge tu JDK 17 o superior
    (o descárgalo desde ahí mismo).
-3. Arriba a la derecha ya está la configuración **Casino Broadway**: pulsa ▶.
+3. En **Project Structure → Libraries**, agrega la carpeta `lib` del SDK JavaFX al módulo `CasinoBroadway`.
+4. En la configuración **Casino Broadway**, agrega `--module-path "ruta/al/sdk/lib" --add-modules javafx.controls` en **VM options** y ejecuta `Main`.
 
 La configuración ya viene en `.idea/` y `CasinoBroadway.iml`.
 
 ## Sin IDE
 
-- Windows: doble clic en `ejecutar.bat`.
-- macOS / Linux: `./ejecutar.sh`.
+- Windows (CMD): `set "JAVAFX_LIB=C:\ruta\javafx-sdk\lib"` y luego `ejecutar.bat`.
+- macOS / Linux: `JAVAFX_LIB="/ruta/javafx-sdk/lib" ./ejecutar.sh`. En Linux, el script también revisa el SDK del sistema y la caché local de Maven.
 
 ---
 
@@ -55,14 +59,14 @@ La configuración ya viene en `.idea/` y `CasinoBroadway.iml`.
 
 ```text
 src/
-├── enums/        Reservada para enumeraciones independientes
-├── files/        Imagen utilizada en la portada y el acceso
-├── interfaces/   Operable
+├── enums/        Efectos de sonido
+├── files/        Logo y estilos JavaFX
+├── interfaces/   Operable y ServicioSonido
 ├── modelos/      Dominio del diagrama UML
 ├── persistencia/ Reservada para RF-11
 ├── repositorios/ Reservada para repositorios
-├── servicios/    Datos iniciales y formato de dinero
-├── ui/           Pantallas Swing de los cuatro cargos
+├── servicios/    Datos iniciales, formato y sonido
+├── ui/fx/        Portada, acceso, sala de clientes y paneles de empleados
 └── Main.java     Punto de entrada
 ```
 

@@ -4,7 +4,7 @@
 
 ## 🎰 Cómo ejecutarlo
 
-1. Descarga **[`CasinoBroadway.jar`](CasinoBroadway.jar)** y dale doble clic (o `java -jar CasinoBroadway.jar`). Necesitas **Java 17 o superior**.
+1. En Linux x86-64, abre **[`CasinoBroadway.jar`](CasinoBroadway.jar)** con `java -jar CasinoBroadway.jar`. Necesitas **Java 17 o superior**. Para ejecutar desde el código en otras plataformas, usa los scripts con un SDK **JavaFX 21**. [Guía de ejecución](docs/README.md#ejecutar-el-casino)
 2. En la portada presiona **ESPACIO**.
 3. Entra con una de las cuentas de prueba (también hay botones en la pantalla para llenarlas):
 
@@ -15,7 +15,13 @@
 | Crupier | `crupier` | `crupier123` | Registrar apuestas y jugar las rondas de Ruleta y Blackjack, sala de tragamonedas |
 | Técnico de máquinas | `tecnico` | `tecnico123` | Registrar máquinas y ponerlas en mantenimiento |
 
-En IntelliJ: `File → Open…`, escoger la carpeta del repositorio y ejecutar **Casino Broadway** (`Main`).
+### Jugar como cliente
+
+Pulsa **Entrar como cliente**, registra un cliente nuevo y escribe el dinero con el que quieres empezar. El lobby de Broadway tiene acceso a **Tragamonedas**, **Blackjack**, **Ruleta** y **Caja**.
+
+El monto inicial aparece como **Efectivo**. En **Caja** puedes comprar fichas con ese dinero, cambiarlas de vuelta a efectivo, revisar los movimientos de tu visita y reclamar el cashback de tu nivel. El cliente, las fichas y los movimientos de caja son los del mismo casino que usan los empleados durante la sesión.
+
+En IntelliJ, abre la carpeta y configura el SDK JavaFX antes de ejecutar **Casino Broadway** (`Main`). [Configuración de IntelliJ](docs/README.md#abrirlo-en-intellij-idea)
 
 | Inicio de sesión | Administrador · Mesas |
 |---|---|
@@ -55,7 +61,7 @@ Las operaciones de registro, creación y mantenimiento reciben los datos del for
 
 `Caja.cerrarTurno(double)` conserva el valor contado, incluidos los centavos. `TurnoCaja.cerrar(int)` conserva la firma del diagrama y comparte el cálculo del cierre.
 
-Las pantallas Swing están en `src/ui/`. Los datos administrativos se guardan en memoria durante la sesión. La persistencia administrativa (RF-11) queda pendiente.
+Las pantallas JavaFX están en `src/ui/fx/`. Las vistas de cliente y empleados usan el mismo `Casino` y los mismos objetos del dominio. Los datos se mantienen en memoria durante la sesión. La persistencia administrativa (RF-11) queda pendiente.
 
 ## Requerimientos cubiertos
 

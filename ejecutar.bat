@@ -1,14 +1,18 @@
 @echo off
-rem Compila y abre el Casino Broadway sin IDE (Windows). Requiere JDK 17 o superior.
+rem Launch with an existing JavaFX SDK on Windows. Requires JDK 17 or later.
+setlocal
 cd /d "%~dp0"
-if not exist bin mkdir bin
-dir /s /b src\*.java > fuentes.txt
-javac -encoding UTF-8 -d bin @fuentes.txt
-if errorlevel 1 (
-  echo No se pudo compilar. Revisa que tengas instalado un JDK 17 o superior.
-  del fuentes.txt
-  pause
+if not defined JAVAFX_LIB (
+  echo Define JAVAFX_LIB con la carpeta lib de un SDK JavaFX 21 para Windows.
   exit /b 1
 )
-del fuentes.txt
-java -cp "bin;src" Main
+if not exist bin mkdir bin
+set "JAVAC=javac"
+set "JAVA=java"
+if defined JAVA_HOME (
+  set "JAVAC=%JAVA_HOME%\bin\javac.exe"
+  set "JAVA=%JAVA_HOME%\bin\java.exe"
+)
+"%JAVAC%" --release 17 -encoding UTF-8 --module-path "%JAVAFX_LIB%" --add-modules javafx.controls --source-path src -d bin src/Main.java
+if errorlevel 1 exit /b 1
+"%JAVA%" --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -cp "bin;src" Main
