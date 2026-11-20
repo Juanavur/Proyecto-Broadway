@@ -224,6 +224,9 @@ Un miembro **estático** pertenece a la **clase** y no a cada objeto: existe una
 
 **Cómo podría ampliarse:** el mismo criterio sirve para otras reglas fijas del negocio, como la capacidad máxima de una mesa (7 jugadores), el multiplicador de las máquinas (10 veces la apuesta) o la longitud mínima de la contraseña (6 caracteres). También para contadores compartidos, como un `siguienteId` estático en `MovimientoCaja` que le dé a cada movimiento un número único.
 
+<img width="601" height="120" alt="image" src="https://github.com/user-attachments/assets/149548bd-8e7a-4268-9f3c-c2a94cc26ae9" />
+
+
 ### Clases anidadas
 
 Una **clase anidada** se declara dentro de otra porque solo tiene sentido junto a ella. En el diagrama se conecta con una línea que termina en **⊕** del lado de la clase que la contiene.
@@ -238,7 +241,13 @@ Una **clase anidada** se declara dentro de otra porque solo tiene sentido junto 
 
 `Caja.CierreTurno` y `MaquinaTragaMoneda.RondaMaquina` son clases anidadas estáticas. Cada giro registra el costo aplicado al momento de jugar. `Cliente.NivelFidelidad` es un `enum` anidado con los cuatro niveles del casino.
 
+<img width="585" height="157" alt="image" src="https://github.com/user-attachments/assets/e6761f22-4444-44dc-8b9d-a51f36d5f070" />
+
+
 ### Interfaces
+
+<img width="581" height="161" alt="image" src="https://github.com/user-attachments/assets/197b83c1-6e1a-45e3-853f-620e0c5d757a" />
+
 
 Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin decir **cómo**. En el diagrama se ve como una línea punteada con un triángulo vacío que apunta a la interfaz.
 
@@ -247,7 +256,16 @@ Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin d
 - Ambas permiten consultar si están en servicio. La mesa admite apuestas del crupier asignado y una máquina en mantenimiento rechaza los giros.
 
 
+<img width="536" height="92" alt="image" src="https://github.com/user-attachments/assets/b51ece44-7378-45a8-8e7b-8a49b5b2aca7" />
+
 ---
+
+### Polimorfismo
+
+- El polimofismo se implementa desde la clase `Juego` de la que heredan `Ruleta` y `Blackjack` los cuales trabajan los metodos heredados de: `calcularPremio` `liquidar apuesta`
+
+<img width="570" height="332" alt="image" src="https://github.com/user-attachments/assets/d80922aa-9759-41c8-954e-3a1191fb73c2" />
+
 
 ## Documentación
 
