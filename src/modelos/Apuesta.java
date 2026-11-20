@@ -8,6 +8,12 @@ public class Apuesta {
     private final Cliente cliente;
 
     public Apuesta(String tipo, double monto, Cliente cliente) {
+        if (tipo == null || tipo.isBlank() || cliente == null) {
+            throw new IllegalArgumentException("La apuesta requiere un cliente y un tipo.");
+        }
+        if (!Double.isFinite(monto) || monto <= 0) {
+            throw new IllegalArgumentException("La apuesta debe ser mayor que 0.");
+        }
         this.tipo = tipo;
         this.monto = monto;
         this.cliente = cliente;

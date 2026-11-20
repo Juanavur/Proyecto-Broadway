@@ -138,6 +138,7 @@ public class SeccionMesaJuego extends Seccion {
         Ruleta ruleta = (Ruleta) mesa.getJuegoAsignado();
         int n = ruleta.girar();
         girar.setEnabled(false);
+        mesas.setEnabled(false);
         rueda.girarHasta(n, () -> {
             StringBuilder detalle = new StringBuilder();
             for (Apuesta a : ronda.getApuestas()) {
@@ -256,6 +257,7 @@ public class SeccionMesaJuego extends Seccion {
     }
 
     private void botonesBj() {
+        mesas.setEnabled(!manoEnCurso && !rueda.girando());
         repartir.setEnabled(!manoEnCurso);
         pedir.setEnabled(manoEnCurso);
         plantarse.setEnabled(manoEnCurso);
@@ -316,11 +318,12 @@ public class SeccionMesaJuego extends Seccion {
         Object clienteElegido = clientes.getSelectedItem();
         mesas.removeAllItems();
         for (Mesa m : casino.getMesas()) {
-            if (m.estaDisponible()) {
+            if (m.estaDisponible() && m.getCrupierAsignado() == crupier) {
                 mesas.addItem(m);
             }
         }
-        if (mesaElegida != null) {
+        if (mesaElegida instanceof Mesa anterior && anterior.estaDisponible()
+                && anterior.getCrupierAsignado() == crupier) {
             mesas.setSelectedItem(mesaElegida);
         }
         clientes.removeAllItems();

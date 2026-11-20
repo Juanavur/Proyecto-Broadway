@@ -8,18 +8,33 @@ import java.util.List;
 public class RondaMesa {
 
     private final Juego juego;
+    private final int maxPlayers;
     private final List<Apuesta> apuestas = new ArrayList<>();
     private boolean liquidada;
     private int resultado = -1;
 
-    public RondaMesa(Juego juego) {
+    RondaMesa(Juego juego, int maxPlayers) {
         this.juego = juego;
+        this.maxPlayers = maxPlayers;
     }
 
     public void agregarApuesta(Apuesta a) {
         if (liquidada) {
             throw new IllegalStateException("La ronda ya terminó.");
         }
+        if (!juego.acceptsBetType(a.getTipo())) {
+            throw new IllegalArgumentException("El tipo de apuesta no es válido para " + juego.getNombreJuego() + ".");
+        }
+        String document = a.getCliente().getDocumento();
+        long otherPlayers = apuestas.stream()
+                .map(bet -> bet.getCliente().getDocumento())
+                .filter(other -> !other.equals(document))
+                .distinct()
+                .count();
+        if (otherPlayers >= maxPlayers) {
+            throw new IllegalStateException("La ronda ya alcanzó la capacidad de la mesa.");
+        }
+        a.getCliente().apostar(a.getMonto());
         apuestas.add(a);
     }
 

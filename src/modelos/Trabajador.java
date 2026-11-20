@@ -43,7 +43,7 @@ public abstract class Trabajador extends Persona {
         return null;
     }
 
-    public abstract boolean puedeRealizar(String accion);
+    public abstract Boolean puedeRealizar(String accion);
 
     public abstract String getCargo();
 

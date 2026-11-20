@@ -15,16 +15,6 @@
 | Crupier | `crupier` | `crupier123` | Registrar apuestas y jugar las rondas de Ruleta y Blackjack, sala de tragamonedas |
 | Técnico de máquinas | `tecnico` | `tecnico123` | Registrar máquinas y ponerlas en mantenimiento |
 
-### 🎲 Simulación de cliente
-
-En la pantalla de inicio de sesión, **"Entrar como cliente (simulación)"** crea un cliente al azar (nombre, número de documento, edad, nivel de fidelidad y dinero en efectivo). Con **"Entrar al casino"** se abre el juego completo de la primera versión (tragamonedas, blackjack, póker Texas Hold'em, carreras y ruleta) como ese cliente. **"Terminar simulación"** cierra el juego y vuelve al inicio de sesión. La simulación no guarda nada en archivos.
-
-| Cliente generado | Sala de juegos del cliente |
-|---|---|
-| ![Simulación](docs/capturas-version-uml/16-simulacion-cliente.png) | ![Lobby](docs/capturas-version-uml/17-simulacion-lobby.png) |
-
-El juego de cliente tiene sus propios subpaquetes `modelos.simulacion`, `servicios.simulacion` y `ui.simulacion`.
-
 En IntelliJ: `File → Open…`, escoger la carpeta del repositorio y ejecutar **Casino Broadway** (`Main`).
 
 | Inicio de sesión | Administrador · Mesas |
@@ -47,7 +37,7 @@ Las clases del diagrama están en `src/modelos/`. La interfaz `Operable` está e
 | `Persona` *(abstracta)* | `Persona.java` | `documento`, `nombre`, `fechaNacimiento`, `getEdad()` |
 | `Cliente` (+ `edadMinima = 18` estático) | `Cliente.java` | `esMayorDeEdad`, `comprarFichas`, `apostar` |
 | `NivelFidelidad` (anidada en `Cliente`) | `Cliente.java` | `cashbackBronce/Plata/Oro/Vip` estáticos y `calcularCashback(nivel, perdida)` estático |
-| `Trabajador` *(abstracta)* | `Trabajador.java` | `id`, `usuario`, `contraseña`, `autenticacion`, `puedeRealizar` abstracto |
+| `Trabajador` *(abstracta)* | `Trabajador.java` | `id`, `usuario`, `contraseña`, `autenticacion`, `puedeRealizar(String)` abstracto con retorno `Boolean` |
 | `Administrador`, `Cajero`, `Crupier`, `TecnicoMaquina` | un archivo cada una | Cada cargo redefine `puedeRealizar` (polimorfismo) |
 | `Operable` *(interfaz)* | `Operable.java` | La implementan `Mesa` y `MaquinaTragaMoneda` |
 | `Mesa` | `Mesa.java` | `validarMontoApuesta`, `asignarCrupier`, `nuevaRonda`, `abrir`, `cerrar`, `estaDisponible` |
@@ -61,13 +51,11 @@ Las clases del diagrama están en `src/modelos/`. La interfaz `Operable` está e
 | `TurnoCaja` | `TurnoCaja.java` | `registrarMovimiento`, `calcularSaldoEsperado`, `cerrar(efectivo)` |
 | `MovimientoCaja` | `MovimientoCaja.java` | `tipo`, `monto`, `fecha` |
 
-**Diferencias pequeñas con el diagrama (para actualizarlo si se quiere):**
-- Algunos métodos que en el UML no tienen parámetros los necesitan para funcionar: `crearMesa(codigo, juego, minima, maxima, capacidad, crupier)`, `registrarEmpleados(empleado)`, `definirCargoEmpleado(cargo, ...)`, `ponerEnMantenimiento(maquina)` y `registrarMaquinasTragaMonedas(codigo, costoPorGiro)`.
-- Métodos de apoyo que no están en el UML: getters, `Casino.iniciarSesion`, `Casino.registrarJuego`, `Casino.agregarMesa/agregarMaquina`, `Cliente.cobrarPremio/retirarFichas/reclamarCashback`, `Juego.liquidarApuesta`, `Ruleta.girar`, `Blackjack.nuevaCarta/valorMano`, `Mesa.rondaActual` y `RondaMaquina.getCarretes` (para dibujar los símbolos).
-- `NivelFidelidad` se implementó como `enum` anidado (Bronce, Plata, Oro, VIP), con los porcentajes estáticos del UML.
-- No hay persistencia en archivos: el diagrama actual no la incluye (RF-11 queda pendiente).
+Las operaciones de registro, creación y mantenimiento reciben los datos del formulario, que el diagrama deja implícitos. `Apuesta.calcularPago(Juego)` es concreto porque `Apuesta` se instancia directamente. El cálculo se delega al `Juego`, con implementaciones polimórficas en `Ruleta` y `Blackjack`.
 
-La interfaz gráfica administrativa está en `src/ui/` y la de simulación está en `src/ui/simulacion/`.
+`Caja.cerrarTurno(double)` conserva el valor contado, incluidos los centavos. `TurnoCaja.cerrar(int)` conserva la firma del diagrama y comparte el cálculo del cierre.
+
+Las pantallas Swing están en `src/ui/`. Los datos administrativos se guardan en memoria durante la sesión. La persistencia administrativa (RF-11) queda pendiente.
 
 ## Requerimientos cubiertos
 
@@ -78,9 +66,9 @@ La interfaz gráfica administrativa está en `src/ui/` y la de simulación está
 | RF-03 | `puedeRealizar` de cada cargo: el cajero no crea mesas, el crupier no vende fichas, solo el técnico cambia el estado de una máquina |
 | RF-04 | `Mesa`: mínima < máxima, capacidad 1 a 7, código único, crupier asignado, máximo `totalMesas` |
 | RF-05 | `Casino.registrarJuego`: Ruleta y Blackjack, sin nombres repetidos |
-| RF-06 | `Cajero.venderFichas` / `canjearFichas`: montos > 0 y no se canjea más de lo que se tiene |
+| RF-06 | `Cajero.venderFichas` / `canjearFichas`: requieren turno abierto, monto positivo y saldo suficiente para canjear |
 | RF-07 | `Caja` + `TurnoCaja` + `CierreTurno`: ventas 1.000.000 y canjes 700.000 → balance 300.000; si el efectivo no coincide, `DESCUADRE` |
-| RF-08 | `Crupier.registrarApuestas` valida mínimo, máximo y saldo; pleno de 10.000 gana 350.000 y blackjack natural de 10.000 gana 15.000 |
+| RF-08 | El crupier asignado registra apuestas con cupo, tipo, rango y saldo válidos. Un pleno de 10.000 gana 350.000 y un blackjack natural de 10.000 gana 15.000 |
 | RF-09 | `MaquinaTragaMoneda`: en mantenimiento no deja jugar, 3 iguales pagan 10 veces y cada giro descuenta su valor |
 | RF-10 | Nivel según total apostado (Plata desde 2.000.000), cashback Oro 5 %, el nivel nunca baja |
 | RF-11 | Pendiente (no está en el diagrama) |
@@ -91,7 +79,7 @@ La interfaz gráfica administrativa está en `src/ui/` y la de simulación está
 ## Descripción del Problema
 
 ### Contexto
-El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar. Cuenta con una nómina operativa de más de 400 empleados distribuidos en turnos rotativos y una infraestructura física compuesta por 30 mesas de juego en vivo (Ruleta, Blackjack y Póker) y más de 120 terminales electrónicas. A pesar del flujo constante de dinero y fichas, la gestión de apuestas, el control de inventario de mesa y la administración de usuarios se realiza mediante métodos manuales y planillas descentralizadas, lo que genera inconsistencias contables y riesgos operativos diarios.
+El Casino Broadway es una empresa de entretenimiento presencial y juegos de azar. Cuenta con una nómina operativa de más de 400 empleados distribuidos en turnos rotativos y una infraestructura física compuesta por 30 mesas de juego en vivo de ruleta y blackjack y más de 120 terminales electrónicas. A pesar del flujo constante de dinero y fichas, la gestión de apuestas, el control de inventario de mesa y la administración de usuarios se realiza mediante métodos manuales y planillas descentralizadas, lo que genera inconsistencias contables y riesgos operativos diarios.
 
 ### Actores
 * **Cajero:** Empleado responsable de la venta y canje de fichas por dinero en efectivo, registro del balance inicial y ejecución del arqueo/cierre de caja por turno.
@@ -235,11 +223,7 @@ Una **clase anidada** se declara dentro de otra porque solo tiene sentido junto 
 
 **Utilidad:** el código queda agrupado donde se usa (alta cohesión), el paquete no se llena de clases pequeñas que nadie más usa y el nombre deja clara la relación: `Caja.CierreTurno` se lee como "el cierre de una caja".
 
-**Cómo podría aplicarse mejor:** en Java hay dos tipos de clase anidada. Una **estática** no necesita un objeto de la clase externa, mientras que una **interna** sí puede usar sus datos.
-- `Caja.CierreTurno` debería ser **estática**, porque solo guarda números del resumen.
-- `RondaMaquina` debería ser **interna**, porque necesita el costo por giro de *su* máquina.
-- `RondaMesa` podría pasar a ser una clase interna de `Mesa` (`Mesa.RondaMesa`): una ronda siempre ocurre en una mesa y necesita sus límites, su capacidad y su juego.
-- `NivelFidelidad` podría escribirse como un `enum` anidado.
+`Caja.CierreTurno` y `MaquinaTragaMoneda.RondaMaquina` son clases anidadas estáticas. Cada giro registra el costo aplicado al momento de jugar. `Cliente.NivelFidelidad` es un `enum` anidado con los cuatro niveles del casino.
 
 ### Interfaces
 
@@ -247,7 +231,7 @@ Una **interfaz** es un contrato: dice **qué** debe saber hacer una clase, sin d
 
 **`Operable`**: métodos `estaDisponible()`, `abrir()` y `cerrar()`.
 - La implementan `Mesa` (abierta o cerrada) y `MaquinaTragaMoneda` (operativa o en mantenimiento).
-- Las dos se ponen en servicio y se sacan de servicio, y ninguna permite jugar
+- Ambas permiten consultar si están en servicio. La mesa admite apuestas del crupier asignado y una máquina en mantenimiento rechaza los giros.
 
 
 ---

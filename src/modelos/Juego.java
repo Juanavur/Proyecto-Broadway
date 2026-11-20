@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.Arrays;
+
 /**
  * Juego de mesa del casino (RF-05). Cada juego sabe cuánto paga: el mismo llamado
  * calcularPremio(monto) da un resultado distinto en la ruleta y en el blackjack (polimorfismo).
@@ -25,6 +27,10 @@ public abstract class Juego {
 
     /** Tipos de apuesta que acepta el juego, para mostrarlos en la interfaz. */
     public abstract String[] getTiposApuesta();
+
+    boolean acceptsBetType(String betType) {
+        return Arrays.asList(getTiposApuesta()).contains(betType);
+    }
 
     public String getNombreJuego() {
         return nombreJuego;

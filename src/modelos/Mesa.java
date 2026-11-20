@@ -25,7 +25,8 @@ public class Mesa implements Operable {
         if (juegoAsignado == null) {
             throw new IllegalArgumentException("La mesa necesita un juego registrado.");
         }
-        if (apuestaMinima <= 0 || apuestaMinima >= apuestaMaxima) {
+        if (!Double.isFinite(apuestaMinima) || !Double.isFinite(apuestaMaxima)
+                || apuestaMinima <= 0 || apuestaMinima >= apuestaMaxima) {
             throw new IllegalArgumentException("La apuesta mínima debe ser mayor que 0 y menor que la máxima.");
         }
         if (jugadoresMaximos < 1 || jugadoresMaximos > 7) {
@@ -50,7 +51,13 @@ public class Mesa implements Operable {
     }
 
     public RondaMesa nuevaRonda() {
-        RondaMesa ronda = new RondaMesa(juegoAsignado);
+        if (!rondas.isEmpty()) {
+            RondaMesa anterior = rondas.get(rondas.size() - 1);
+            if (!anterior.estaLiquidada() && !anterior.getApuestas().isEmpty()) {
+                throw new IllegalStateException("Primero hay que liquidar la ronda actual.");
+            }
+        }
+        RondaMesa ronda = new RondaMesa(juegoAsignado, jugadoresMaximos);
         rondas.add(ronda);
         return ronda;
     }

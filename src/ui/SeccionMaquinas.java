@@ -27,7 +27,14 @@ public class SeccionMaquinas extends Seccion {
         add(cabecera, BorderLayout.NORTH);
 
         BotonCasino estado = new BotonCasino("Poner en mantenimiento / volver a servicio");
-        estado.addActionListener(e -> intentar(() -> tecnico.ponerEnMantenimiento(seleccionada())));
+        estado.addActionListener(e -> intentar(() -> {
+            MaquinaTragaMoneda machine = seleccionada();
+            if (machine.estaDisponible()) {
+                tecnico.ponerEnMantenimiento(machine);
+            } else {
+                tecnico.returnToService(machine);
+            }
+        }));
         JPanel lista = Componentes.tarjeta(new BorderLayout(0, 10));
         lista.add(Componentes.subtitulo("Máquinas del casino"), BorderLayout.NORTH);
         lista.add(Componentes.scroll(tabla), BorderLayout.CENTER);

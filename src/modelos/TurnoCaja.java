@@ -17,8 +17,8 @@ public class TurnoCaja {
     private final List<MovimientoCaja> movimientos = new ArrayList<>();
 
     public TurnoCaja(double saldoInicial) {
-        if (saldoInicial < 0) {
-            throw new IllegalArgumentException("La base de la caja no puede ser negativa.");
+        if (!Double.isFinite(saldoInicial) || saldoInicial < 0) {
+            throw new IllegalArgumentException("La base de la caja debe ser un monto válido y no negativo.");
         }
         this.id = siguienteId++;
         this.saldoInicial = saldoInicial;
@@ -39,8 +39,15 @@ public class TurnoCaja {
 
     /** Cierra el turno con el efectivo del turno contado por el cajero (sin la base). */
     public Caja.CierreTurno cerrar(int efectivo) {
+        return cerrar((double) efectivo);
+    }
+
+    Caja.CierreTurno cerrar(double efectivo) {
         if (cierre != null) {
             throw new IllegalStateException("El turno ya está cerrado.");
+        }
+        if (!Double.isFinite(efectivo)) {
+            throw new IllegalArgumentException("El efectivo contado debe ser un monto válido.");
         }
         cierre = LocalDate.now();
         return new Caja.CierreTurno(total(MovimientoCaja.VENTA), total(MovimientoCaja.CANJE), efectivo);

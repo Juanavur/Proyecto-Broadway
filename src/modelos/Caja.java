@@ -21,12 +21,16 @@ public class Caja {
     }
 
     private void registrar(MovimientoCaja movimiento) {
+        requireOpenShift().registrarMovimiento(movimiento);
+        movimientos.add(movimiento);
+    }
+
+    TurnoCaja requireOpenShift() {
         TurnoCaja turno = turnoActual();
         if (turno == null) {
             throw new IllegalStateException("Primero hay que abrir un turno de caja.");
         }
-        turno.registrarMovimiento(movimiento);
-        movimientos.add(movimiento);
+        return turno;
     }
 
     public TurnoCaja abrirTurno(double saldoInicial) {
@@ -53,7 +57,7 @@ public class Caja {
         if (turno == null) {
             throw new IllegalStateException("No hay un turno abierto.");
         }
-        CierreTurno cierre = turno.cerrar((int) Math.round(efectivoContado));
+        CierreTurno cierre = turno.cerrar(efectivoContado);
         String detalle = "Ventas " + Formato.dinero(cierre.getVentas()) + " - canjes " + Formato.dinero(cierre.getCanjes())
                 + " = balance " + Formato.dinero(cierre.getBalance()) + "; contado " + Formato.dinero(cierre.getEfectivoContado());
         return (cierre.hayDescuadre() ? "DESCUADRE" : "CUADRADO") + " · " + detalle;
@@ -88,7 +92,7 @@ public class Caja {
         }
 
         public boolean hayDescuadre() {
-            return Math.abs(efectivoContado - getBalance()) > 0.5;
+            return Math.abs(efectivoContado - getBalance()) >= 0.005;
         }
 
         public double getVentas() {

@@ -80,6 +80,9 @@ public class Casino {
         if (!juegos.contains(mesa.getJuegoAsignado())) {
             throw new IllegalArgumentException("Una mesa solo puede usar un juego registrado.");
         }
+        if (!empleados.contains(mesa.getCrupierAsignado())) {
+            throw new IllegalArgumentException("Una mesa debe tener un crupier registrado en el casino.");
+        }
         for (Mesa m : mesas) {
             if (m.getCodigoMesa().equals(mesa.getCodigoMesa())) {
                 return false;

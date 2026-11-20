@@ -13,14 +13,14 @@ public class TecnicoMaquina extends Trabajador {
         this.casino = casino;
     }
 
-    /** Pone la máquina en mantenimiento, o la devuelve al servicio si ya lo estaba. */
     public void ponerEnMantenimiento(MaquinaTragaMoneda maquina) {
         exigir(CAMBIAR_ESTADO_MAQUINA);
-        if (maquina.estaDisponible()) {
-            maquina.cerrar();
-        } else {
-            maquina.abrir();
-        }
+        maquina.cerrar();
+    }
+
+    public void returnToService(MaquinaTragaMoneda machine) {
+        exigir(CAMBIAR_ESTADO_MAQUINA);
+        machine.abrir();
     }
 
     public MaquinaTragaMoneda registrarMaquinasTragaMonedas(String codigo, double costoPorGiro) {
@@ -33,7 +33,7 @@ public class TecnicoMaquina extends Trabajador {
     }
 
     @Override
-    public boolean puedeRealizar(String accion) {
+    public Boolean puedeRealizar(String accion) {
         return CAMBIAR_ESTADO_MAQUINA.equals(accion) || REGISTRAR_MAQUINA.equals(accion);
     }
 

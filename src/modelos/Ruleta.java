@@ -77,4 +77,10 @@ public class Ruleta extends Juego {
     public String[] getTiposApuesta() {
         return TIPOS.clone();
     }
+
+    @Override
+    boolean acceptsBetType(String betType) {
+        return betType.matches("Pleno ([0-9]|[12][0-9]|3[0-6])")
+                || (!"Pleno".equals(betType) && super.acceptsBetType(betType));
+    }
 }

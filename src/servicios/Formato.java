@@ -8,12 +8,12 @@ import java.util.Locale;
 public final class Formato {
 
     private static final DecimalFormat PESOS =
-            new DecimalFormat("$#,##0", DecimalFormatSymbols.getInstance(Locale.forLanguageTag("es-CO")));
+            new DecimalFormat("$#,##0.##", DecimalFormatSymbols.getInstance(Locale.forLanguageTag("es-CO")));
 
     private Formato() {
     }
 
     public static String dinero(double valor) {
-        return PESOS.format(Math.round(valor));
+        return PESOS.format(valor);
     }
 }

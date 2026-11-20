@@ -15,15 +15,19 @@ public class Cajero extends Trabajador {
 
     public boolean venderFichas(Cliente cliente, double monto) {
         exigir(VENDER_FICHAS);
+        Caja caja = casino.getCaja();
+        caja.requireOpenShift();
         cliente.comprarFichas(monto);
-        casino.getCaja().registrarVenta(monto);
+        caja.registrarVenta(monto);
         return true;
     }
 
     public boolean canjearFichas(Cliente cliente, double monto) {
         exigir(VENDER_FICHAS);
+        Caja caja = casino.getCaja();
+        caja.requireOpenShift();
         cliente.retirarFichas(monto);
-        casino.getCaja().registrarCanje(monto);
+        caja.registrarCanje(monto);
         return true;
     }
 
@@ -33,7 +37,7 @@ public class Cajero extends Trabajador {
     }
 
     @Override
-    public boolean puedeRealizar(String accion) {
+    public Boolean puedeRealizar(String accion) {
         return REGISTRAR_CLIENTE.equals(accion) || VENDER_FICHAS.equals(accion) || MANEJAR_CAJA.equals(accion);
     }
 

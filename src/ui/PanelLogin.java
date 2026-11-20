@@ -75,14 +75,8 @@ public class PanelLogin extends PanelFieltro {
             });
             demo.add(b);
         }
-        BotonCasino simular = new BotonCasino("Entrar como cliente (simulación)");
-        simular.addActionListener(e -> new DialogoSimulacion(javax.swing.SwingUtilities.getWindowAncestor(this)).setVisible(true));
-        JPanel accesos = new JPanel(new GridLayout(2, 1, 0, 8));
-        accesos.setOpaque(false);
-        accesos.add(entrar);
-        accesos.add(simular);
         JPanel pie = Componentes.bloque(8);
-        pie.add(accesos, BorderLayout.NORTH);
+        pie.add(entrar, BorderLayout.NORTH);
         pie.add(Componentes.nota("Cuentas de prueba (clic para llenar):"), BorderLayout.CENTER);
         pie.add(demo, BorderLayout.SOUTH);
         tarjeta.add(pie, BorderLayout.SOUTH);

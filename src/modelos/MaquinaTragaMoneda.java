@@ -24,7 +24,7 @@ public class MaquinaTragaMoneda implements Operable {
         if (codigoMaquina == null || codigoMaquina.isBlank()) {
             throw new IllegalArgumentException("El código de la máquina es obligatorio.");
         }
-        if (costoPorGiro <= 0) {
+        if (!Double.isFinite(costoPorGiro) || costoPorGiro <= 0) {
             throw new IllegalArgumentException("El valor por giro debe ser mayor que 0.");
         }
         this.codigoMaquina = codigoMaquina.trim().toUpperCase();

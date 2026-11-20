@@ -49,7 +49,7 @@ public class Administrador extends Trabajador {
     }
 
     @Override
-    public boolean puedeRealizar(String accion) {
+    public Boolean puedeRealizar(String accion) {
         return CREAR_MESA.equals(accion) || REGISTRAR_EMPLEADO.equals(accion) || VER_REPORTES.equals(accion);
     }
 

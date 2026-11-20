@@ -26,13 +26,13 @@ public class Cliente extends Persona {
         }
     }
 
-    public static boolean esMayorDeEdad(LocalDate fechaNacimiento) {
+    public final boolean esMayorDeEdad(LocalDate fechaNacimiento) {
         return fechaNacimiento != null
                 && Period.between(fechaNacimiento, LocalDate.now()).getYears() >= edadMinima;
     }
 
     public void comprarFichas(double monto) {
-        if (monto <= 0) {
+        if (!Double.isFinite(monto) || monto <= 0) {
             throw new IllegalArgumentException("El monto debe ser mayor que 0.");
         }
         saldoFichas += monto;
@@ -40,7 +40,7 @@ public class Cliente extends Persona {
 
     /** Descuenta la apuesta del saldo y la suma al total apostado; puede subir el nivel. */
     public void apostar(double monto) {
-        if (monto <= 0) {
+        if (!Double.isFinite(monto) || monto <= 0) {
             throw new IllegalArgumentException("La apuesta debe ser mayor que 0.");
         }
         if (monto > saldoFichas) {
@@ -66,7 +66,7 @@ public class Cliente extends Persona {
 
     /** Saca fichas del saldo para cambiarlas por dinero en la caja. */
     public void retirarFichas(double monto) {
-        if (monto <= 0) {
+        if (!Double.isFinite(monto) || monto <= 0) {
             throw new IllegalArgumentException("El monto debe ser mayor que 0.");
         }
         if (monto > saldoFichas) {

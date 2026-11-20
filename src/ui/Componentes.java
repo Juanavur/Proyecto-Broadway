@@ -166,13 +166,18 @@ public final class Componentes {
         }
     }
 
-    /** Lee un monto en pesos; acepta puntos de miles (100.000). */
+    /** Lee montos con separador de miles y hasta dos decimales (100.000,50). */
     public static double monto(String texto) {
-        String limpio = texto.replace("$", "").replace(".", "").replace(",", "").trim();
+        String limpio = texto.replace("$", "").replace(".", "").trim()
+                .replaceFirst(",(?=\\d{1,2}$)", ".").replace(",", "");
         try {
-            return Double.parseDouble(limpio);
+            double monto = Double.parseDouble(limpio);
+            if (Double.isFinite(monto)) {
+                return monto;
+            }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Escriba un monto válido, por ejemplo 50.000.");
+            // Report invalid numbers and non-finite values with the same message.
         }
+        throw new IllegalArgumentException("Escriba un monto válido, por ejemplo 50.000,50.");
     }
 }

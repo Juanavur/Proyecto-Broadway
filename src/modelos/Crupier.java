@@ -18,18 +18,20 @@ public class Crupier extends Trabajador {
         if (!mesa.estaDisponible()) {
             throw new IllegalStateException("La mesa " + mesa.getCodigoMesa() + " está cerrada.");
         }
+        if (mesa.getCrupierAsignado() != this) {
+            throw new IllegalStateException("Solo el crupier asignado puede operar esta mesa.");
+        }
         if (!mesa.validarMontoApuesta(monto)) {
             throw new IllegalArgumentException("La apuesta debe estar entre " + Formato.dinero(mesa.getApuestaMinima())
                     + " y " + Formato.dinero(mesa.getApuestaMaxima()) + ".");
         }
-        cliente.apostar(monto);
         Apuesta apuesta = new Apuesta(tipo, monto, cliente);
         mesa.rondaActual().agregarApuesta(apuesta);
         return apuesta;
     }
 
     @Override
-    public boolean puedeRealizar(String accion) {
+    public Boolean puedeRealizar(String accion) {
         return REGISTRAR_APUESTA.equals(accion);
     }
 
