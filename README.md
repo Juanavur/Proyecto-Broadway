@@ -206,11 +206,9 @@ Además de los conceptos de esta entrega, el diseño usa **herencia** (`Persona 
 
 ### Herencia y Encapsulamiento
 
-![img_6.png](img_6.png)
+<img width="585" height="185" alt="image" src="https://github.com/user-attachments/assets/9156662c-7a6b-4682-bd11-7bff054f8902" />
+<img width="570" height="442" alt="image" src="https://github.com/user-attachments/assets/c2e9f68c-7e69-4baa-a8e7-ae62b3900c04" />
 
-![img_7.png](img_7.png)
-
-![img_8.png](img_8.png)
 
 
 ### Atributos y métodos estáticos
