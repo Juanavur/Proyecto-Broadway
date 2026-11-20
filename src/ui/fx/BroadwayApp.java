@@ -1,10 +1,14 @@
 package ui.fx;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,7 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelos.Casino;
 import modelos.Trabajador;
-import servicios.DatosIniciales;
+import repositorios.RepositorioCasino;
 import servicios.sonido.Sonidos;
 
 import java.util.Objects;
@@ -32,11 +36,18 @@ public final class BroadwayApp extends Application {
     private static final double MIN_HEIGHT = 700;
     private final StackPane root = new StackPane();
     private Casino casino;
+    /** Guarda el casino en datos/casino.json (RF-11). */
+    private final RepositorioCasino repositorio = new RepositorioCasino();
+    private Timeline autoguardado;
     private Image logo;
 
     @Override
     public void start(Stage stage) {
-        casino = DatosIniciales.crear();
+        casino = repositorio.cargarOCrear();
+        // Autoguardado: cada segundo se escribe el archivo, solo si algo cambió (RNF-02).
+        autoguardado = new Timeline(new KeyFrame(Duration.seconds(1), e -> guardar()));
+        autoguardado.setCycleCount(Animation.INDEFINITE);
+        autoguardado.play();
         logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/files/logo.png")));
         Sonidos.iniciar();
         root.getStyleClass().add("casino");
@@ -63,7 +74,25 @@ public final class BroadwayApp extends Application {
         stage.setScene(scene);
         cover(scene);
         stage.show();
+        avisarSiHayProblema();
     }
+
+    private void guardar() {
+        repositorio.guardarSiCambio(casino);
+        avisarSiHayProblema();
+    }
+
+    private void avisarSiHayProblema() {
+        String aviso = repositorio.getAviso();
+        if (aviso != null && !aviso.equals(ultimoAviso)) {
+            ultimoAviso = aviso;
+            Alert alerta = new Alert(Alert.AlertType.WARNING, aviso);
+            alerta.setHeaderText("Datos guardados del casino");
+            alerta.show();
+        }
+    }
+
+    private String ultimoAviso;
 
     private void cover(Scene scene) {
         ImageView mark = new ImageView(logo);
@@ -141,6 +170,10 @@ public final class BroadwayApp extends Application {
 
     @Override
     public void stop() {
+        if (autoguardado != null) {
+            autoguardado.stop();
+        }
+        repositorio.guardarSiCambio(casino);
         Sonidos.setSilencio(true);
     }
 }

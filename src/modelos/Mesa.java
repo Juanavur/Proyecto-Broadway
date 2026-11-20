@@ -39,6 +39,23 @@ public class Mesa implements Operable {
         this.jugadoresMaximos = jugadoresMaximos;
     }
 
+    /** Si la mesa está abierta (aunque le falte crupier). Lo usa la persistencia. */
+    public boolean estaAbierta() {
+        return abierta;
+    }
+
+    /** Todas las rondas de la mesa, en orden. */
+    public List<RondaMesa> getRondas() {
+        return java.util.Collections.unmodifiableList(rondas);
+    }
+
+    /** Agrega una ronda leída del archivo (RF-11), sin volver a cobrar ni pagar nada. */
+    public void restaurarRonda(boolean liquidada, int resultado, List<Apuesta> apuestas) {
+        RondaMesa ronda = new RondaMesa(juegoAsignado, jugadoresMaximos);
+        ronda.restaurar(liquidada, resultado, apuestas);
+        rondas.add(ronda);
+    }
+
     public boolean validarMontoApuesta(double monto) {
         return monto >= apuestaMinima && monto <= apuestaMaxima;
     }

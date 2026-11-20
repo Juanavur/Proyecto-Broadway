@@ -13,6 +13,11 @@ public class MovimientoCaja {
     private final LocalDate fecha;
 
     public MovimientoCaja(String tipo, double monto) {
+        this(tipo, monto, LocalDate.now());
+    }
+
+    /** Movimiento con su fecha original (se usa al leer el archivo, RF-11). */
+    public MovimientoCaja(String tipo, double monto, LocalDate fecha) {
         if (!VENTA.equals(tipo) && !CANJE.equals(tipo)) {
             throw new IllegalArgumentException("El movimiento debe ser una venta o un canje.");
         }
@@ -21,7 +26,7 @@ public class MovimientoCaja {
         }
         this.tipo = tipo;
         this.monto = monto;
-        this.fecha = LocalDate.now();
+        this.fecha = fecha;
     }
 
     public String getTipo() {

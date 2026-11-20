@@ -18,6 +18,13 @@ public class RondaMesa {
         this.maxPlayers = maxPlayers;
     }
 
+    /** Rellena la ronda con lo que había en el archivo (RF-11). */
+    void restaurar(boolean liquidada, int resultado, List<Apuesta> guardadas) {
+        apuestas.addAll(guardadas);
+        this.liquidada = liquidada;
+        this.resultado = resultado;
+    }
+
     public void agregarApuesta(Apuesta a) {
         if (liquidada) {
             throw new IllegalStateException("La ronda ya terminó.");

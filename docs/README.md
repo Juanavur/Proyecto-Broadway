@@ -63,8 +63,8 @@ src/
 ├── files/        Logo y estilos JavaFX
 ├── interfaces/   Operable y ServicioSonido
 ├── modelos/      Dominio del diagrama UML
-├── persistencia/ Reservada para RF-11
-├── repositorios/ Reservada para repositorios
+├── persistencia/ GestorArchivos (escritura segura) y Json (lector/escritor)
+├── repositorios/ RepositorioCasino: guarda y carga el casino en datos/casino.json
 ├── servicios/    Datos iniciales, formato y sonido
 ├── ui/fx/        Portada, acceso, sala de clientes y paneles de empleados
 └── Main.java     Punto de entrada

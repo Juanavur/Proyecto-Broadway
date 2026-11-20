@@ -46,6 +46,11 @@ public class MaquinaTragaMoneda implements Operable {
         return ronda;
     }
 
+    /** Agrega un giro leído del archivo (RF-11), sin volver a cobrarlo ni pagarlo. */
+    public void restaurarJugada(LocalDate hora, double costo, double premio, Cliente jugador, int[] carretes) {
+        jugadas.add(new RondaMaquina(hora, costo, premio, jugador, carretes.clone()));
+    }
+
     @Override
     public boolean estaDisponible() {
         return estado;
@@ -81,13 +86,18 @@ public class MaquinaTragaMoneda implements Operable {
     /** Un giro de la máquina. Está anidada porque cada giro pertenece a una máquina concreta. */
     public static class RondaMaquina {
 
-        private final LocalDate hora = LocalDate.now();
+        private final LocalDate hora;
         private final double costo;
         private final double premio;
         private final Cliente jugador;
         private final int[] carretes;
 
         RondaMaquina(double costo, double premio, Cliente jugador, int[] carretes) {
+            this(LocalDate.now(), costo, premio, jugador, carretes);
+        }
+
+        RondaMaquina(LocalDate hora, double costo, double premio, Cliente jugador, int[] carretes) {
+            this.hora = hora;
             this.costo = costo;
             this.premio = premio;
             this.jugador = jugador;

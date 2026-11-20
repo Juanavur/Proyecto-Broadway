@@ -25,6 +25,21 @@ public class TurnoCaja {
         this.apertura = LocalDate.now();
     }
 
+    /** Turno leído del archivo (RF-11): conserva su número y sus fechas. */
+    TurnoCaja(long id, double saldoInicial, LocalDate apertura, LocalDate cierre, List<MovimientoCaja> movimientos) {
+        this.id = id;
+        this.saldoInicial = saldoInicial;
+        this.apertura = apertura;
+        this.cierre = cierre;
+        this.movimientos.addAll(movimientos);
+        siguienteId = Math.max(siguienteId, id + 1);
+    }
+
+    /** Fecha de cierre, o null si el turno sigue abierto. */
+    public LocalDate getCierre() {
+        return cierre;
+    }
+
     public void registrarMovimiento(MovimientoCaja movimiento) {
         if (cierre != null) {
             throw new IllegalStateException("El turno ya está cerrado.");
