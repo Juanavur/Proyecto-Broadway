@@ -204,6 +204,15 @@ El sistema se organiza alrededor de la clase "casino", que es el punto central: 
 
 Además de los conceptos de esta entrega, el diseño usa **herencia** (`Persona → Cliente / Trabajador → cargos`, `Juego → Ruleta / Blackjack`) y **encapsulamiento**: los atributos son privados (`-`) y solo cambian a través de métodos que validan, por ejemplo el saldo del cliente solo cambia con `comprarFichas` y `apostar`.
 
+### Herencia y Encapsulamiento
+
+![img_6.png](img_6.png)
+
+![img_7.png](img_7.png)
+
+![img_8.png](img_8.png)
+
+
 ### Atributos y métodos estáticos
 
 Un miembro **estático** pertenece a la **clase** y no a cada objeto: existe una sola copia compartida por todos y se puede usar sin crear objetos. En el diagrama se marcan con `<static>` y aparecen subrayados.
