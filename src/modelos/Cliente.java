@@ -64,6 +64,20 @@ public class Cliente extends Persona {
         perdidasPeriodo = Math.max(0, perdidasPeriodo - pago);
     }
 
+    /**
+     * Vuelve a crear un cliente guardado en archivo (RF-11) con su saldo, lo apostado,
+     * las pérdidas del periodo y su nivel tal como estaban.
+     */
+    public static Cliente restaurar(String documento, String nombre, LocalDate fechaNacimiento, double saldoFichas,
+                                    double totalApostado, double perdidasPeriodo, NivelFidelidad nivel) {
+        Cliente cliente = new Cliente(documento, nombre, fechaNacimiento);
+        cliente.saldoFichas = saldoFichas;
+        cliente.totalApostado = totalApostado;
+        cliente.perdidasPeriodo = perdidasPeriodo;
+        cliente.nivel = nivel;
+        return cliente;
+    }
+
     /** Saca fichas del saldo para cambiarlas por dinero en la caja. */
     public void retirarFichas(double monto) {
         if (!Double.isFinite(monto) || monto <= 0) {

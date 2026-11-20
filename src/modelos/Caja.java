@@ -33,6 +33,15 @@ public class Caja {
         return turno;
     }
 
+    /** Agrega un turno leído del archivo (RF-11) con todos sus movimientos. */
+    public TurnoCaja restaurarTurno(long id, double saldoInicial, java.time.LocalDate apertura,
+                                    java.time.LocalDate cierre, List<MovimientoCaja> movimientosDelTurno) {
+        TurnoCaja turno = new TurnoCaja(id, saldoInicial, apertura, cierre, movimientosDelTurno);
+        turnos.add(turno);
+        movimientos.addAll(movimientosDelTurno);
+        return turno;
+    }
+
     public TurnoCaja abrirTurno(double saldoInicial) {
         if (turnoActual() != null) {
             throw new IllegalStateException("Ya hay un turno abierto.");

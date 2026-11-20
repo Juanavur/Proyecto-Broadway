@@ -31,4 +31,4 @@ Para comenzar con la entrega 2, se empezarán a abordar los RF-01, RF-02 y RF-03
 | **RF-08** | `Crupier`, `Mesa`, `Juego`, `Apuesta`, `Cliente` | Polimorfismo (`calcularPago()`), Sobrecarga de métodos, Asociación | En diseño |
 | **RF-09** | `TecnicoMaquina`, `MaquinaTragamonedas`, `Cliente` | Encapsulamiento, Enumeraciones para estados operativos, Generación pseudoaleatoria | En diseño |
 | **RF-10** | `Cliente`, `NivelFidelidad`, `Cajero` | Lógica de acumulación, Encapsulamiento, Reglas de negocio | En diseño |
-| **RF-11** | `Casino`, `GestorPersistencia`, `LectorArchivos` | Flujos de entrada/salida (I/O), Serialización / Parsing de archivos, Manejo robusto de excepciones | En diseño |
+| **RF-11** | `Casino`, `RepositorioCasino`, `GestorArchivos`, `Json` | Flujos de entrada/salida (I/O), Serialización / Parsing de archivos (JSON), Manejo robusto de excepciones | Implementado |

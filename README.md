@@ -61,7 +61,16 @@ Las operaciones de registro, creación y mantenimiento reciben los datos del for
 
 `Caja.cerrarTurno(double)` conserva el valor contado, incluidos los centavos. `TurnoCaja.cerrar(int)` conserva la firma del diagrama y comparte el cálculo del cierre.
 
-Las pantallas JavaFX están en `src/ui/fx/`. Las vistas de cliente y empleados usan el mismo `Casino` y los mismos objetos del dominio. Los datos se mantienen en memoria durante la sesión. La persistencia administrativa (RF-11) queda pendiente.
+Las pantallas JavaFX están en `src/ui/fx/`. Las vistas de cliente y empleados usan el mismo `Casino` y los mismos objetos del dominio. Todo el estado del casino se guarda en `datos/casino.json` (RF-11).
+
+### Persistencia (RF-11, RNF-01, RNF-02)
+
+- `repositorios/RepositorioCasino` convierte el `Casino` completo a JSON y lo vuelve a construir: clientes (fichas, total apostado, pérdidas y nivel), empleados, juegos, mesas con sus rondas y apuestas, máquinas con sus giros y estado, y la caja con sus turnos y movimientos.
+- `persistencia/GestorArchivos` escribe primero un archivo temporal y luego reemplaza el anterior, así que un cierre a mitad de la escritura no daña los datos. `persistencia/Json` es un lector y escritor de JSON sin librerías externas.
+- Al arrancar, `BroadwayApp` carga el archivo; si no existe, crea los datos de ejemplo. Mientras el programa está abierto se guarda automáticamente cada segundo, solo si algo cambió, y otra vez al cerrar.
+- Si el archivo está dañado, se aparta como `casino.json.danado-<fecha>`, se avisa en pantalla y se cargan los datos de ejemplo.
+- Las contraseñas nunca se guardan en texto plano: `Trabajador` las cifra con SHA-256 y una sal aleatoria (RNF-01).
+- Para volver a empezar desde cero, borra la carpeta `datos/`.
 
 ## Requerimientos cubiertos
 
@@ -77,7 +86,7 @@ Las pantallas JavaFX están en `src/ui/fx/`. Las vistas de cliente y empleados u
 | RF-08 | El crupier asignado registra apuestas con cupo, tipo, rango y saldo válidos. Un pleno de 10.000 gana 350.000 y un blackjack natural de 10.000 gana 15.000 |
 | RF-09 | `MaquinaTragaMoneda`: en mantenimiento no deja jugar, 3 iguales pagan 10 veces y cada giro descuenta su valor |
 | RF-10 | Nivel según total apostado (Plata desde 2.000.000), cashback Oro 5 %, el nivel nunca baja |
-| RF-11 | Pendiente (no está en el diagrama) |
+| RF-11 | `RepositorioCasino` + `GestorArchivos` + `Json`: guardado automático en `datos/casino.json` y carga al arrancar |
 
 ---
 
@@ -161,7 +170,7 @@ Para la Entrega 2 se abordarán prioritariamente los requerimientos **RF-01, RF-
 | **RF-08** | `Crupier`, `Mesa`, `Juego`, `Apuesta`, `Cliente` | Polimorfismo (`calcularPago()`), Sobrecarga de métodos, Asociación | En diseño |
 | **RF-09** | `TecnicoMaquina`, `MaquinaTragamonedas`, `Cliente` | Encapsulamiento, Enumeraciones para estados operativos, Generación pseudoaleatoria | En diseño |
 | **RF-10** | `Cliente`, `NivelFidelidad`, `Cajero` | Lógica de acumulación, Encapsulamiento, Reglas de negocio | En diseño |
-| **RF-11** | `Casino`, `GestorPersistencia`, `LectorArchivos` | Flujos de entrada/salida (I/O), Serialización / Parsing de archivos, Manejo robusto de excepciones | En diseño |
+| **RF-11** | `Casino`, `RepositorioCasino`, `GestorArchivos`, `Json` | Flujos de entrada/salida (I/O), Serialización / Parsing de archivos (JSON), Manejo robusto de excepciones | Implementado |
 
 ---
 
