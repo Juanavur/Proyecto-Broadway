@@ -2,8 +2,6 @@
 
 <p align="center"><img src="docs/capturas-version-uml/01-portada.png" alt="Casino Broadway" width="100%"></p>
 
-> **Rama `version-uml`**: versión simplificada del sistema, escrita para que el código siga **clase por clase el diagrama UML** (`docs/Diagrama UML.png`). La versión completa del juego sigue en `main`.
-
 ## 🎰 Cómo ejecutarlo
 
 1. Descarga **[`CasinoBroadway.jar`](CasinoBroadway.jar)** y dale doble clic (o `java -jar CasinoBroadway.jar`). Necesitas **Java 17 o superior**.
