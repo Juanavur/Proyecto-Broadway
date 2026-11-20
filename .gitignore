@@ -1,0 +1,13 @@
+# Compilados
+bin/
+out/
+*.class
+
+# Partida guardada del jugador
+datos/
+
+# Archivos personales de los IDE
+.idea/workspace.xml
+.idea/shelf/
+.idea/usage.statistics.xml
+.vscode/*.log
